@@ -1,7 +1,6 @@
 extends Node
 class_name Accumulator
 
-const FILE_NAME: String = "activities.json"
 
 func _on_timer_timeout() -> void:
 	store_activites(SelectedDay.selected_day)
@@ -19,25 +18,13 @@ func read_daily_from_file(selected_day: Dictionary) -> Dictionary:
 		return {}
 	
 func _store_activities(dict: Dictionary, month: int, year: int) -> void:
-	var file: FileAccess = FileAccess.open("user://%02d-%04d-%s" % [month, year, FILE_NAME]  , FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open("user://%02d-%04d-%s" % [month, year, ActivitiesReader.FILE_NAME]  , FileAccess.WRITE)
 	var json_string: String = JSON.stringify(dict, "\t")
 	file.store_string(json_string)
 	file.close()
 
 func _read_file(month: int, year: int) -> Dictionary:
-	var file: FileAccess = FileAccess.open("user://%02d-%04d-%s" % [month, year, FILE_NAME] , FileAccess.READ_WRITE)
-	if file == null:
-		file = FileAccess.open("user://%02d-%04d-%s" % [month, year, FILE_NAME] , FileAccess.WRITE_READ)
-	var content: String = file.get_as_text()
-	var json: JSON = JSON.new()
-	var error = json.parse(content)
-	var data: Dictionary = {}
-	if error == OK:
-		data = json.data
-	else:
-		print(json.get_error_message())
-	file.close()
-	return data
+	return ActivitiesReader.read_monthly_activites(month, year)
 
 func _compute_new_daily_activities() -> Dictionary:
 	var new_activites: Dictionary = {}

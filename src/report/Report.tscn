@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcct66ur6x82i"]
+
+[ext_resource type="Script" path="res://src/report/report.gd" id="1_ab38x"]
+[ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_l2pt4"]
+[ext_resource type="PackedScene" uid="uid://bebplqd82yg1g" path="res://src/report/activity_report_item.tscn" id="3_pum8j"]
+
+[node name="Report" type="VBoxContainer"]
+offset_left = 2.0
+offset_right = 630.0
+offset_bottom = 639.0
+script = ExtResource("1_ab38x")
+
+[node name="Background" parent="." instance=ExtResource("1_l2pt4")]
+scale = Vector2(1153, 640)
+
+[node name="ActivityReportItem" parent="." instance=ExtResource("3_pum8j")]
+visible = false
+layout_mode = 2

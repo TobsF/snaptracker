@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bebplqd82yg1g"]
+
+[ext_resource type="Script" path="res://src/report/activity_report_item.gd" id="1_043p5"]
+
+[node name="ActivityReportItem" type="HBoxContainer" groups=["report_item"]]
+script = ExtResource("1_043p5")
+
+[node name="AcitivityName" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UWE90"
+
+[node name="AcitivityTime" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+text = "12:10:30"
+
+[node name="ActivityPercentage" type="ProgressBar" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
