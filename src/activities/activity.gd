@@ -90,7 +90,7 @@ func _increase_deletion_counter():
 		deletion_counter = 0
 		delete_released = false
 		deletion_sprite.scale.y = 0
-	elif deletion_counter == 10:
+	elif deletion_counter >= 10:
 		queue_free()
 	else:
 		deletion_counter += 1

@@ -13,7 +13,8 @@ config_version=5
 config/name="Snaptracker"
 run/main_scene="res://src/tracker.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://resources/icon.png"
+config/windows_native_icon="res://resources/icon.ico"
 
 [autoload]
 
