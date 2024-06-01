@@ -37,8 +37,4 @@ func _on_next_day_button_pressed() -> void:
 	SelectedDay.selected_day = selected_day.duplicate()
 
 func _get_days_in_month() -> Array[int]:
-	var datetime = Time.get_datetime_dict_from_system(true)
-	var days: Array[int] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-	if datetime["year"] % 4 == 0 and (datetime["year"] % 100 != 0 or datetime["year"] % 400 == 0):
-		days[1] = 29
-	return days
+	return Date.get_days_in_month()

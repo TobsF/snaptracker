@@ -1,6 +1,19 @@
 extends Node
 class_name Date
 
+static func get_days_in_month() ->  Array[int]: 
+	var days_in_month: Array[int] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	var datetime 
+	if SelectedDay.selected_day:
+		datetime = SelectedDay.selected_day.duplicate()
+	else:
+		datetime = Time.get_datetime_dict_from_system(true)
+	if datetime["year"] % 4 == 0 and (datetime["year"] % 100 != 0 or datetime["year"] % 400 == 0):
+		days_in_month[1] = 29
+	else: 
+		days_in_month[1] = 28
+	return days_in_month
+
 func _init(init_day: int, init_month: int, init_year: int) -> void:
 	self.day = init_day
 	self.month = init_month
