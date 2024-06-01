@@ -3,13 +3,13 @@ extends VBoxContainer
 const ACTIVITY_REPORT_ITEM_SCENE: PackedScene = preload("res://src/report/activity_report_item.tscn")
 
 @onready var loaded_data: Dictionary = _load_data_for_interval()
+var selected_day: Date
 
-func _ready() -> void:
+func open_new_day(new_day: Dictionary) -> void:
+	selected_day = Date.new(int(new_day["day"]), int(new_day["month"]), int(new_day["year"]))
+	for item: ActivityReportItem in get_tree().get_nodes_in_group("report_item"):
+		item.queue_free()
 	_render_items(get_selected_date())
-
-func _process(_delta: float) -> void:
-	#_render_items(get_selected_date())
-	pass
 
 func get_interval_start() -> Date:
 	return Date.new(1, 5, 2024)
@@ -18,7 +18,7 @@ func get_interval_end() -> Date:
 	return Date.new(31, 5, 2024)
 	
 func get_selected_date() -> Date:
-	return Date.new(5, 5, 2024)
+	return selected_day
 	
 # Dictionary: <Date, Dictionary<ActivityName as String, String time in seconds>>
 func _load_data_for_interval() -> Dictionary:

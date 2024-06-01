@@ -1,6 +1,7 @@
 extends HBoxContainer
 
-@export var daily_activities: DailyActivities
+# expects a func open_new_day(selected_day: Dictionary)
+@export var day_observer: Node
 
 @onready var selected_day: Dictionary = SelectedDay.selected_day.duplicate()
 @onready var days_in_month: Array[int] = _get_days_in_month()
@@ -20,7 +21,7 @@ func _on_previous_day_button_pressed() -> void:
 			selected_day["month"] = 12
 			selected_day["year"] -= 1
 		selected_day["day"] = days_in_month[selected_day["month"] - 1]
-	daily_activities.open_new_day(selected_day.duplicate())
+	day_observer.open_new_day(selected_day.duplicate())
 	SelectedDay.selected_day = selected_day.duplicate()
 
 func _on_next_day_button_pressed() -> void:
@@ -32,7 +33,7 @@ func _on_next_day_button_pressed() -> void:
 		if selected_day["month"] > 12:
 			selected_day["month"] = 1
 			selected_day["year"] += 1
-	daily_activities.open_new_day(selected_day.duplicate())
+	day_observer.open_new_day(selected_day.duplicate())
 	SelectedDay.selected_day = selected_day.duplicate()
 
 func _get_days_in_month() -> Array[int]:
