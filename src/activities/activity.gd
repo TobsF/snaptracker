@@ -71,3 +71,11 @@ func _on_stop_button_pressed() -> void:
 
 func _on_timer_timeout() -> void:
 	time_seconds += 1
+
+func _on_delete_button_pressed() -> void:
+	queue_free()
+
+func _on_activity_edit_text_changed(new_text: String) -> void:
+	var caret_column = %ActivityEdit.caret_column
+	%ActivityEdit.text = new_text.to_upper()
+	%ActivityEdit.caret_column = caret_column
