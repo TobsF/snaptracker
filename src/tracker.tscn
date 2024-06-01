@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccyribr17cuhf"]
+[gd_scene load_steps=6 format=3 uid="uid://ccyribr17cuhf"]
 
 [ext_resource type="Script" path="res://src/tracker.gd" id="1_bmhnn"]
 [ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_i0got"]
 [ext_resource type="Theme" uid="uid://c7v1cvt2e6440" path="res://resources/themes/tracker_theme.tres" id="2_4c3qh"]
 [ext_resource type="PackedScene" uid="uid://euos5mhsb35v" path="res://src/global_scaler.tscn" id="3_rnt32"]
-[ext_resource type="PackedScene" uid="uid://bk1q2hfevuxax" path="res://tracking_view.tscn" id="4_vhdx6"]
-[ext_resource type="PackedScene" uid="uid://dxbnokwmbbi0d" path="res://src/activities/accumulator.tscn" id="6_og8yq"]
 [ext_resource type="Script" path="res://src/quit_button.gd" id="7_npnr5"]
 
 [node name="Tracker" type="Node2D"]
@@ -19,35 +17,31 @@ offset_right = 1147.0
 offset_bottom = 644.0
 theme = ExtResource("2_4c3qh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="ViewContainer" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ViewContainer"]
 layout_mode = 2
 
-[node name="TrackingButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TrackingButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
 layout_mode = 2
 text = "Tracking"
 
-[node name="ReportButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ReportButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
 layout_mode = 2
 text = "Report"
 
-[node name="TrackingView" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_vhdx6")]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="GlobalScaler" parent="MarginContainer" instance=ExtResource("3_rnt32")]
 
-[node name="Accumulator" parent="." instance=ExtResource("6_og8yq")]
-
-[node name="QuitButton" type="Button" parent="." node_paths=PackedStringArray("accumulator")]
+[node name="QuitButton" type="Button" parent="."]
 offset_left = 1130.0
 offset_top = 2.0
 offset_right = 1148.0
 offset_bottom = 33.0
 text = "X"
 script = ExtResource("7_npnr5")
-accumulator = NodePath("../Accumulator")
 
+[connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/TrackingButton" to="." method="_on_tracking_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ReportButton" to="." method="_on_report_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]

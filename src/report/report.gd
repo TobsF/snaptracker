@@ -3,7 +3,10 @@ extends VBoxContainer
 const ACTIVITY_REPORT_ITEM_SCENE: PackedScene = preload("res://src/report/activity_report_item.tscn")
 
 @onready var loaded_data: Dictionary = _load_data_for_interval()
-var selected_day: Date
+@onready var selected_day: Date = SelectedDay.as_date()
+
+func _ready() -> void:
+	open_new_day({"day": selected_day.day, "month": selected_day.month, "year": selected_day.year})
 
 func open_new_day(new_day: Dictionary) -> void:
 	selected_day = Date.new(int(new_day["day"]), int(new_day["month"]), int(new_day["year"]))

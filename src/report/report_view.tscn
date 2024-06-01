@@ -9,7 +9,12 @@ size_flags_vertical = 3
 
 [node name="DaySelector" parent="." node_paths=PackedStringArray("day_observer") instance=ExtResource("2_ngwd0")]
 layout_mode = 2
-day_observer = NodePath("../Report")
+day_observer = NodePath("../MarginContainer/Report")
 
-[node name="Report" parent="." instance=ExtResource("1_ngh45")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="Report" parent="MarginContainer" instance=ExtResource("1_ngh45")]
 layout_mode = 2
