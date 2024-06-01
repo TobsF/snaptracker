@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgjqv87s428vj"]
+[gd_scene load_steps=12 format=3 uid="uid://bgjqv87s428vj"]
 
 [ext_resource type="Script" path="res://src/activities/activity.gd" id="1_p3tdh"]
 [ext_resource type="Texture2D" uid="uid://scrrmhfudf2s" path="res://resources/buttons/play.png" id="2_mj4w3"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bean37gr7jal0" path="res://resources/buttons/stop_hover.png" id="5_4nnlu"]
 
 [sub_resource type="Theme" id="Theme_g4nif"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hb3bi"]
+size = Vector2(29, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8i4c"]
 content_margin_left = 10.0
@@ -30,6 +33,13 @@ offset_bottom = 31.0
 theme = SubResource("Theme_g4nif")
 alignment = 1
 script = ExtResource("1_p3tdh")
+
+[node name="DeletionSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.988897, 0, 0.0751305, 0.454902)
+position = Vector2(15, 16)
+scale = Vector2(1, 1e-05)
+texture = SubResource("PlaceholderTexture2D_hb3bi")
 
 [node name="DeleteButton" type="Button" parent="."]
 layout_mode = 2
@@ -78,7 +88,8 @@ stretch_mode = 5
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="button_down" from="DeleteButton" to="." method="_on_delete_button_button_down"]
+[connection signal="button_up" from="DeleteButton" to="." method="_on_delete_button_button_up"]
 [connection signal="text_changed" from="ActivityEdit" to="." method="_on_activity_edit_text_changed"]
 [connection signal="focus_entered" from="TimerEdit" to="." method="_on_timer_edit_focus_entered"]
 [connection signal="focus_exited" from="TimerEdit" to="." method="_on_timer_edit_focus_exited"]

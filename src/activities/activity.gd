@@ -1,6 +1,10 @@
 extends HBoxContainer
 class_name Activity
 
+@onready var deletion_sprite: Sprite2D = %DeletionSprite
+
+var delete_released: bool = false
+var deletion_counter: int = 0
 var time_seconds: int = 0
 var regex: RegEx
 
@@ -72,10 +76,27 @@ func _on_stop_button_pressed() -> void:
 func _on_timer_timeout() -> void:
 	time_seconds += 1
 
-func _on_delete_button_pressed() -> void:
-	queue_free()
-
 func _on_activity_edit_text_changed(new_text: String) -> void:
 	var caret_column = %ActivityEdit.caret_column
 	%ActivityEdit.text = new_text.to_upper()
 	%ActivityEdit.caret_column = caret_column
+
+
+func _on_delete_button_button_down() -> void:
+	_increase_deletion_counter()
+
+func _increase_deletion_counter():
+	if delete_released:
+		deletion_counter = 0
+		delete_released = false
+		deletion_sprite.scale.y = 0
+	elif deletion_counter == 10:
+		queue_free()
+	else:
+		deletion_counter += 1
+		var tween: Tween = create_tween()
+		tween.tween_property(deletion_sprite, "scale:y", deletion_sprite.scale.y + 0.1 , 0.1)
+		tween.parallel().tween_callback(_increase_deletion_counter).set_delay(0.1)
+
+func _on_delete_button_button_up() -> void:
+	delete_released = true

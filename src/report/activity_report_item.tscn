@@ -17,6 +17,7 @@ layout_mode = 2
 horizontal_alignment = 2
 
 [node name="ActivityPercentage" type="ProgressBar" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
