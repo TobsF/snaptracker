@@ -14,9 +14,11 @@ func _on_texture_button_toggled(toggled_on: bool) -> void:
 		get_window().borderless = true
 		get_window().always_on_top = true
 		%UnfoldButton.visible = false
+		get_window().size = %TrackingLabel.size
 	else:
 		%UnfoldButton.visible = true
-		get_window().borderless = false
+		if(OS.has_feature("window_decoration")):
+			get_window().borderless = false
 		get_window().always_on_top = false
 
 func _on_unfold_button_pressed() -> void:
