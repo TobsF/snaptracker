@@ -15,6 +15,10 @@ run/main_scene="res://tracker.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ActivityTopic="*res://activity_topic.gd"
+
 [display]
 
 window/size/borderless=true

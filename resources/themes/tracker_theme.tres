@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://c7v1cvt2e6440"]
 
-[ext_resource type="StyleBox" uid="uid://cbe53pebfmf12" path="res://border_stylebox.tres" id="1_kg1ta"]
+[ext_resource type="StyleBox" uid="uid://cbe53pebfmf12" path="res://resources/themes/border_stylebox.tres" id="1_drfjd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_136ae"]
 content_margin_left = 15.0
@@ -27,7 +27,6 @@ border_width_bottom = 1
 border_color = Color(0.873298, 0.873298, 0.873298, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra10u"]
-content_margin_left = 15.0
 content_margin_top = 15.0
 content_margin_right = 15.0
 content_margin_bottom = 15.0
@@ -40,10 +39,10 @@ border_width_bottom = 2
 bg_color = Color(0, 0, 0, 1)
 
 [resource]
-Button/styles/disabled = ExtResource("1_kg1ta")
+Button/styles/disabled = ExtResource("1_drfjd")
 Button/styles/focus = null
 Button/styles/hover = SubResource("StyleBoxFlat_136ae")
-Button/styles/normal = ExtResource("1_kg1ta")
+Button/styles/normal = ExtResource("1_drfjd")
 Button/styles/pressed = SubResource("StyleBoxFlat_t7u38")
 Label/styles/normal = SubResource("StyleBoxEmpty_ra10u")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_aef1e")

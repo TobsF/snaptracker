@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgjqv87s428vj"]
+[gd_scene load_steps=7 format=3 uid="uid://bgjqv87s428vj"]
 
 [ext_resource type="Script" path="res://activity.gd" id="1_yrv34"]
+[ext_resource type="Texture2D" uid="uid://scrrmhfudf2s" path="res://resources/buttons/play.png" id="2_5u05j"]
+[ext_resource type="Texture2D" uid="uid://cuo20bny42d52" path="res://resources/buttons/play_hover.png" id="3_fkrv8"]
+[ext_resource type="Texture2D" uid="uid://br0fv28n5c3ap" path="res://resources/buttons/stop.png" id="4_tihf0"]
+[ext_resource type="Texture2D" uid="uid://bean37gr7jal0" path="res://resources/buttons/stop_hover.png" id="5_cnjxd"]
 
 [sub_resource type="Theme" id="Theme_g4nif"]
 
 [node name="Activity" type="HBoxContainer"]
+offset_right = 175.0
+offset_bottom = 31.0
 theme = SubResource("Theme_g4nif")
 alignment = 1
 script = ExtResource("1_yrv34")
@@ -12,14 +18,44 @@ script = ExtResource("1_yrv34")
 [node name="ActivityEdit" type="LineEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
 placeholder_text = "ACTIVITY"
 expand_to_text_length = true
 
 [node name="TimerEdit" type="LineEdit" parent="."]
 layout_mode = 2
+size_flags_stretch_ratio = 1.5
 placeholder_text = "00:00:00"
 expand_to_text_length = true
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.01
+
+[node name="PlayButton" type="TextureButton" parent="BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_5u05j")
+texture_hover = ExtResource("3_fkrv8")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="StopButton" type="TextureButton" parent="BoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("4_tihf0")
+texture_hover = ExtResource("5_cnjxd")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="focus_entered" from="TimerEdit" to="." method="_on_timer_edit_focus_entered"]
 [connection signal="focus_exited" from="TimerEdit" to="." method="_on_timer_edit_focus_exited"]
 [connection signal="text_submitted" from="TimerEdit" to="." method="_on_timer_edit_text_submitted"]
+[connection signal="pressed" from="BoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="BoxContainer/StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
