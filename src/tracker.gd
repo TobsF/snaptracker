@@ -21,6 +21,9 @@ func _on_tracking_button_pressed() -> void:
 
 
 func _on_report_button_pressed() -> void:
+	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
+	if accumulator != null:
+		accumulator.store_activites(SelectedDay.selected_day)
 	if tracking_node != null:
 		tracking_node.queue_free()
 	if report_node == null:

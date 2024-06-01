@@ -17,6 +17,7 @@ size_flags_stretch_ratio = 0.0
 text = "12:10:30"
 
 [node name="ActivityPercentage" type="ProgressBar" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0

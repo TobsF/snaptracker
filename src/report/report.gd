@@ -2,28 +2,34 @@ extends VBoxContainer
 
 const ACTIVITY_REPORT_ITEM_SCENE: PackedScene = preload("res://src/report/activity_report_item.tscn")
 
-@onready var loaded_data: Dictionary = _load_data_for_interval()
 @onready var selected_day: Date = SelectedDay.as_date()
+@onready var loaded_data: Dictionary = _load_data_for_interval()
 
 func _ready() -> void:
-	open_new_day({"day": selected_day.day, "month": selected_day.month, "year": selected_day.year})
+	_show_report_for_date(selected_day)
 
 func open_new_day(new_day: Dictionary) -> void:
 	selected_day = Date.new(int(new_day["day"]), int(new_day["month"]), int(new_day["year"]))
+	if Date.from_key(loaded_data.keys()[0]).month != selected_day.month:
+		loaded_data= _load_data_for_interval()
+	
+	_show_report_for_date(get_selected_date())
+
+func _show_report_for_date(selected: Date) -> void:
 	for item: ActivityReportItem in get_tree().get_nodes_in_group("report_item"):
 		item.queue_free()
-	_render_items(get_selected_date())
+	_render_items(selected)
 
 func get_interval_start() -> Date:
-	return Date.new(1, 5, 2024)
+	return Date.new(1, get_selected_date().month, get_selected_date().year)
 	
 func get_interval_end() -> Date:
-	return Date.new(31, 5, 2024)
+	return Date.new(31, get_selected_date().month, get_selected_date().year)
 	
 func get_selected_date() -> Date:
 	return selected_day
 	
-# Dictionary: <Date, Dictionary<ActivityName as String, String time in seconds>>
+# Dictionary: <Date-string, Dictionary<ActivityName as String, String time in seconds>>
 func _load_data_for_interval() -> Dictionary:
 	var mapped_data: Dictionary = {}
 	var activity_dict: Dictionary = ActivitiesReader.read_monthly_activites(get_interval_start().month, get_interval_start().year)
