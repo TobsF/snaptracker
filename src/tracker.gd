@@ -31,6 +31,7 @@ func _on_report_button_pressed() -> void:
 	if tracking_node != null:
 		tracking_node.queue_free()
 	if report_node == null:
+		LoadedReports.reload()
 		report_node = PACKED_REPORT_SCENE.instantiate()
 		%ViewContainer.add_child(report_node)
 

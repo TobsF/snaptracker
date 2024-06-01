@@ -60,5 +60,32 @@ static func from_key(key: String) -> Date:
 	var splitted: PackedStringArray = key.split("-")
 	return Date.new(int(splitted[0]), int(splitted[1]), int(splitted[2]))
 	
+static func get_next(date: Date) -> Date:
+	var next_day: Date = date.duplicated()
+	next_day.weekday = (date.weekday + 1) % 7
+	next_day.day += 1
+	if next_day.day > get_days_in_month()[next_day.month - 1]:
+		next_day.day = 1
+		next_day.month += 1
+		if next_day.month > 12:
+			next_day.month = 1
+			next_day.year += 1
+	return next_day
+	
+static func get_previous(date: Date) -> Date:
+	var next_day: Date = date.duplicated()
+	var next_weekday: int = date.weekday - 1
+	if next_weekday < 0:
+		next_weekday = 6
+	next_day.weekday = next_weekday
+	next_day.day -= 1
+	if next_day.day == 0:
+		next_day.month -= 1
+		if next_day.month == 0:
+			next_day.month = 12
+			next_day.year -= 1
+		next_day.day = get_days_in_month()[next_day.month - 1]
+	return next_day
+	
 func to_key() -> String:
 	return "%s-%s-%s" % [day, month, year]
