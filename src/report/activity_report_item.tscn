@@ -1,20 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bebplqd82yg1g"]
+[gd_scene load_steps=3 format=3 uid="uid://bebplqd82yg1g"]
 
 [ext_resource type="Script" path="res://src/report/activity_report_item.gd" id="1_043p5"]
+[ext_resource type="PackedScene" uid="uid://yoofc37daiiw" path="res://src/report/copyable_label.tscn" id="2_yofr5"]
 
 [node name="ActivityReportItem" type="HBoxContainer" groups=["report_item"]]
 script = ExtResource("1_043p5")
 
-[node name="AcitivityName" type="Label" parent="."]
+[node name="ActivityName" parent="." instance=ExtResource("2_yofr5")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "UWE90"
+size_flags_stretch_ratio = 1.43
 
-[node name="AcitivityTime" type="Label" parent="."]
+[node name="ActivityTime" parent="." instance=ExtResource("2_yofr5")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.0
-text = "12:10:30"
 
 [node name="ActivityPercentage" type="ProgressBar" parent="."]
 visible = false
