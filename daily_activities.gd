@@ -1,7 +1,30 @@
 extends VBoxContainer
+class_name DailyActivities
+
+const ACTIVITY_RESOURCE: Resource = preload("res://activity.tscn")
+
+func _ready() -> void:
+	_create_activities_from_day(SelectedDay.selected_day)
 
 func _process(delta: float) -> void:
 	$DayLabel.text = _get_weekday_text(SelectedDay.selected_day)
+
+func open_new_day(new_selected_day: Dictionary) -> void:
+	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
+	accumulator.store_activites(SelectedDay.selected_day)
+	for tracker: Node in get_tree().get_nodes_in_group("activity_tracking"):
+		tracker.queue_free()
+	_create_activities_from_day(new_selected_day)
+
+
+func _create_activities_from_day(selected_day: Dictionary) -> void:
+	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
+	var activity_dict: Dictionary = accumulator.read_daily_from_file(selected_day)
+	for activity_label: String in activity_dict:
+		var activity: Activity = ACTIVITY_RESOURCE.instantiate()
+		activity.set_activity_name(activity_label)
+		activity.set_allotted_time(activity_dict[activity_label])
+		$VBoxContainer/VBoxContainer.add_child(activity)	
 
 func _get_weekday_text(selected_day: Dictionary) -> String:
 	match selected_day["weekday"]:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Accumulator.gd" id="1_uorpr"]
 
-[node name="Accumulator" type="Node"]
+[node name="Accumulator" type="Node" groups=["accumulator"]]
 script = ExtResource("1_uorpr")
 
 [node name="Timer" type="Timer" parent="."]

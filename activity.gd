@@ -3,7 +3,6 @@ class_name Activity
 
 var time_seconds: int = 0
 var regex: RegEx
-@onready var day: Dictionary = SelectedDay.selected_day
 
 func _ready() -> void:
 	regex = RegEx.new()
@@ -24,8 +23,11 @@ func get_allotted_time() -> int:
 func get_activity_name() -> String:
 	return $ActivityEdit.text
 	
-func get_day() -> Dictionary:
-	return day
+func set_allotted_time(time: int) -> void:
+	time_seconds = time
+
+func set_activity_name(new_name: String) -> void:
+	$ActivityEdit.text = new_name
 
 func _update_from_input(new_text: String) -> void:
 	var match: RegExMatch = regex.search(new_text)
