@@ -6,7 +6,7 @@ const ACTIVITY_RESOURCE: Resource = preload("res://activity.tscn")
 func _ready() -> void:
 	_create_activities_from_day(SelectedDay.selected_day)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$DayLabel.text = _get_weekday_text(SelectedDay.selected_day)
 
 func open_new_day(new_selected_day: Dictionary) -> void:

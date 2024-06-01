@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccyribr17cuhf"]
+[gd_scene load_steps=8 format=3 uid="uid://ccyribr17cuhf"]
 
 [ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://background.tscn" id="1_i0got"]
 [ext_resource type="Theme" uid="uid://c7v1cvt2e6440" path="res://resources/themes/tracker_theme.tres" id="2_4c3qh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bkrdh1ugss00a" path="res://daily_activities.tscn" id="3_pbufd"]
 [ext_resource type="PackedScene" uid="uid://euos5mhsb35v" path="res://global_scaler.tscn" id="3_rnt32"]
 [ext_resource type="PackedScene" uid="uid://dxbnokwmbbi0d" path="res://accumulator.tscn" id="6_og8yq"]
+[ext_resource type="Script" path="res://quit_button.gd" id="7_npnr5"]
 
 [node name="Tracker" type="Node2D"]
 
@@ -30,3 +31,12 @@ layout_mode = 2
 [node name="GlobalScaler" parent="AspectRatioContainer" instance=ExtResource("3_rnt32")]
 
 [node name="Accumulator" parent="." instance=ExtResource("6_og8yq")]
+
+[node name="QuitButton" type="Button" parent="." node_paths=PackedStringArray("accumulator")]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "X"
+script = ExtResource("7_npnr5")
+accumulator = NodePath("../Accumulator")
+
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
