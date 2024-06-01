@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk1q2hfevuxax"]
+[gd_scene load_steps=7 format=3 uid="uid://bk1q2hfevuxax"]
 
+[ext_resource type="Script" path="res://src/activities/tracking_view.gd" id="1_0d4ku"]
 [ext_resource type="PackedScene" uid="uid://cccbqcydu2h30" path="res://src/activities/day_selector.tscn" id="1_jj5pt"]
 [ext_resource type="PackedScene" uid="uid://bkrdh1ugss00a" path="res://src/activities/daily_activities.tscn" id="2_1i3l6"]
 [ext_resource type="PackedScene" uid="uid://dxbnokwmbbi0d" path="res://src/activities/accumulator.tscn" id="3_rofdn"]
+[ext_resource type="Texture2D" uid="uid://ddsrge8bsgij8" path="res://resources/buttons/unfold.png" id="4_r8geo"]
+[ext_resource type="Texture2D" uid="uid://b14squkq4hdi" path="res://resources/buttons/unfold_hover.png" id="5_7pgsf"]
 
 [node name="VBoxContainer" type="VBoxContainer"]
 size_flags_horizontal = 3
+script = ExtResource("1_0d4ku")
 
 [node name="DaySelector" parent="." node_paths=PackedStringArray("day_observer") instance=ExtResource("1_jj5pt")]
 layout_mode = 2
@@ -15,3 +19,20 @@ day_observer = NodePath("../DailyActivities")
 layout_mode = 2
 
 [node name="Accumulator" parent="." instance=ExtResource("3_rofdn")]
+
+[node name="FoldContainer" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="FoldButton" type="TextureButton" parent="FoldContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("4_r8geo")
+texture_hover = ExtResource("5_7pgsf")
+ignore_texture_size = true
+stretch_mode = 5
+flip_v = true
+
+[connection signal="pressed" from="FoldContainer/FoldButton" to="." method="_on_fold_button_pressed"]

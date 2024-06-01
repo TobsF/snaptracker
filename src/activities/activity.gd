@@ -28,6 +28,9 @@ func set_allotted_time(time: int) -> void:
 
 func set_activity_name(new_name: String) -> void:
 	$ActivityEdit.text = new_name
+	
+func is_active() -> bool:
+	return $BoxContainer/StopButton.visible
 
 func _update_from_input(new_text: String) -> void:
 	var match: RegExMatch = regex.search(new_text)

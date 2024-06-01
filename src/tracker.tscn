@@ -13,6 +13,7 @@ script = ExtResource("1_bmhnn")
 scale = Vector2(1151, 650)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 offset_right = 1147.0
 offset_bottom = 644.0
 theme = ExtResource("2_4c3qh")
