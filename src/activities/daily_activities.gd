@@ -7,7 +7,7 @@ func _ready() -> void:
 	_create_activities_from_day(SelectedDay.selected_day)
 
 func _process(_delta: float) -> void:
-	$DayLabel.text = _get_weekday_text(SelectedDay.selected_day)
+	%DayLabel.text = _get_weekday_text(SelectedDay.selected_day)
 
 func open_new_day(new_selected_day: Dictionary) -> void:
 	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
@@ -24,7 +24,7 @@ func _create_activities_from_day(selected_day: Dictionary) -> void:
 		var activity: Activity = ACTIVITY_RESOURCE.instantiate()
 		activity.set_activity_name(activity_label)
 		activity.set_allotted_time(activity_dict[activity_label])
-		$VBoxContainer/VBoxContainer.add_child(activity)	
+		%ActivityContainer.add_child(activity)	
 
 func _get_weekday_text(selected_day: Dictionary) -> String:
 	match selected_day["weekday"]:
