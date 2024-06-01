@@ -1,6 +1,6 @@
 extends Node
 
-@onready var selected_day: Dictionary = Time.get_date_dict_from_system(true)
+var selected_day: Date
 
-func as_date() -> Date:
-	return Date.new(int(selected_day["day"]), int(selected_day["month"]), int(selected_day["year"]))
+func _ready() -> void:
+	selected_day = Date.current_as_date()

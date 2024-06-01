@@ -3,12 +3,12 @@ class_name Date
 
 static func get_days_in_month() ->  Array[int]: 
 	var days_in_month: Array[int] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-	var datetime 
+	var datetime: Date
 	if SelectedDay.selected_day:
-		datetime = SelectedDay.selected_day.duplicate()
+		datetime = SelectedDay.selected_day.duplicated()
 	else:
-		datetime = Time.get_datetime_dict_from_system(true)
-	if datetime["year"] % 4 == 0 and (datetime["year"] % 100 != 0 or datetime["year"] % 400 == 0):
+		datetime = Date.current_as_date()
+	if datetime.year % 4 == 0 and (datetime.year % 100 != 0 or datetime.year % 400 == 0):
 		days_in_month[1] = 29
 	else: 
 		days_in_month[1] = 28
@@ -19,9 +19,21 @@ func _init(init_day: int, init_month: int, init_year: int) -> void:
 	self.month = init_month
 	self.year = init_year
 	
+static func current_as_date() -> Date:
+	var current_dictionary: Dictionary = Time.get_date_dict_from_system(true)
+	var date: Date = Date.new(int(current_dictionary["day"]), int(current_dictionary["month"]), int(current_dictionary["year"]))
+	date.weekday = current_dictionary["weekday"]
+	return date
+	
+func duplicated() -> Date:
+	var duplicated_date: Date = Date.new(day, month, year)
+	duplicated_date.weekday = weekday
+	return duplicated_date
+	
 var day: int
 var month: int
 var year: int
+var weekday: int
 
 # less than = -1
 # equal = 0

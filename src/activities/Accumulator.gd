@@ -1,19 +1,18 @@
 extends Node
 class_name Accumulator
 
-
 func _on_timer_timeout() -> void:
 	store_activites(SelectedDay.selected_day)
 	
-func store_activites(selected_day: Dictionary) -> void:
-	var activity_dict: Dictionary = _read_file(selected_day["month"], selected_day["year"])
-	activity_dict[_get_date_formatted(selected_day)] = _compute_new_daily_activities()
-	_store_activities(activity_dict, selected_day["month"], selected_day["year"])
+func store_activites(selected_day: Date) -> void:
+	var activity_dict: Dictionary = _read_file(selected_day.month, selected_day.year)
+	activity_dict[selected_day.to_key()] = _compute_new_daily_activities()
+	_store_activities(activity_dict, selected_day.month, selected_day.year)
 
-func read_daily_from_file(selected_day: Dictionary) -> Dictionary:
-	var monthly_file: Dictionary = _read_file(selected_day["month"], selected_day["year"])
-	if monthly_file.has(_get_date_formatted(selected_day)):
-		return monthly_file[_get_date_formatted(selected_day)]
+func read_daily_from_file(selected_day: Date) -> Dictionary:
+	var monthly_file: Dictionary = _read_file(selected_day.month, selected_day.year)
+	if monthly_file.has(selected_day.to_key()):
+		return monthly_file[selected_day.to_key()]
 	else:
 		return {}
 	
@@ -36,6 +35,3 @@ func _compute_new_daily_activities() -> Dictionary:
 			else:
 				new_activites[key_to_upper] = activity.get_allotted_time()
 	return new_activites
-
-func _get_date_formatted(date: Dictionary) -> String:
-	return "%s-%s-%s" % [date["day"], date["month"], date["year"]]

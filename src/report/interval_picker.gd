@@ -31,11 +31,11 @@ func _ready() -> void:
 	_fill_items(month)
 
 
-func _fill_items(month: int) -> void:
-	month_label.text = _month_to_string(month)
+func _fill_items(for_month: int) -> void:
+	month_label.text = _month_to_string(for_month)
 	year_label.text = str(year)
 	item_list.clear()
-	for day_of_month in Date.get_days_in_month()[month-1]:
+	for day_of_month in Date.get_days_in_month()[for_month-1]:
 		item_list.add_item(str(day_of_month + 1))
 
 
@@ -55,8 +55,8 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 		new_interval.emit(selected_start, selected_end)
 	select_first = not select_first
 
-func _month_to_string(month: int) -> String:
-	match month:
+func _month_to_string(target_month: int) -> String:
+	match target_month:
 		Time.MONTH_JANUARY:
 			return "January"
 		Time.MONTH_FEBRUARY:

@@ -1,15 +1,16 @@
 extends VBoxContainer
+class_name Report
 
 const ACTIVITY_REPORT_ITEM_SCENE: PackedScene = preload("res://src/report/activity_report_item.tscn")
 
-@onready var selected_day: Date = SelectedDay.as_date()
+@onready var selected_day: Date = SelectedDay.selected_day
 @onready var loaded_data: Dictionary = _load_data_for_interval()
 
 func _ready() -> void:
 	_show_report_for_date(selected_day)
 
-func open_new_day(new_day: Dictionary) -> void:
-	selected_day = Date.new(int(new_day["day"]), int(new_day["month"]), int(new_day["year"]))
+func open_new_day(new_day: Date) -> void:
+	selected_day = new_day
 	if Date.from_key(loaded_data.keys()[0]).month != selected_day.month:
 		loaded_data= _load_data_for_interval()
 	
