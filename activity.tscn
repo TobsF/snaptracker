@@ -8,7 +8,7 @@
 
 [sub_resource type="Theme" id="Theme_g4nif"]
 
-[node name="Activity" type="HBoxContainer"]
+[node name="Activity" type="HBoxContainer" groups=["activity_tracking"]]
 offset_right = 175.0
 offset_bottom = 31.0
 theme = SubResource("Theme_g4nif")

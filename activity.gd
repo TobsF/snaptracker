@@ -16,6 +16,12 @@ func _process(_delta: float) -> void:
 	# Format the time as "HH:MM:SS"
 	var formatted_time: String = "%02d:%02d:%02d" % [hours, minutes, seconds]
 	$TimerEdit.text = formatted_time
+	
+func get_allotted_time() -> int:
+	return time_seconds
+	
+func get_activity_name() -> String:
+	return $ActivityEdit.text
 
 func _update_from_input(new_text: String) -> void:
 	var match: RegExMatch = regex.search(new_text)
