@@ -1,11 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvu75jbnwe7w1"]
+[gd_scene load_steps=8 format=3 uid="uid://cvu75jbnwe7w1"]
 
+[ext_resource type="PackedScene" uid="uid://votsouooyknd" path="res://src/report/interval_picker.tscn" id="1_3yiap"]
+[ext_resource type="Script" path="res://src/report/report_view.gd" id="1_maskl"]
 [ext_resource type="PackedScene" uid="uid://bcct66ur6x82i" path="res://src/report/Report.tscn" id="1_ngh45"]
 [ext_resource type="PackedScene" uid="uid://cccbqcydu2h30" path="res://src/activities/day_selector.tscn" id="2_ngwd0"]
+[ext_resource type="Texture2D" uid="uid://ddsrge8bsgij8" path="res://resources/buttons/unfold.png" id="2_p7x26"]
+[ext_resource type="Texture2D" uid="uid://b14squkq4hdi" path="res://resources/buttons/unfold_hover.png" id="3_ts4gc"]
+[ext_resource type="BitMap" uid="uid://blimld5uev4mj" path="res://resources/buttons/unfold_flipped_v_clickmask.png" id="4_a5ad8"]
 
 [node name="ReportView" type="VBoxContainer"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_maskl")
+
+[node name="IntervalPicker" parent="." instance=ExtResource("1_3yiap")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ButtonContainer" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="DisplayIntervalButton" type="TextureButton" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_p7x26")
+texture_hover = ExtResource("3_ts4gc")
+texture_click_mask = ExtResource("4_a5ad8")
+ignore_texture_size = true
+stretch_mode = 5
+flip_v = true
 
 [node name="DaySelector" parent="." node_paths=PackedStringArray("day_observer") instance=ExtResource("2_ngwd0")]
 layout_mode = 2
@@ -18,3 +43,6 @@ theme_override_constants/margin_top = 15
 
 [node name="Report" parent="MarginContainer" instance=ExtResource("1_ngh45")]
 layout_mode = 2
+
+[connection signal="new_interval" from="IntervalPicker" to="." method="_on_interval_picker_new_interval"]
+[connection signal="pressed" from="ButtonContainer/DisplayIntervalButton" to="." method="_on_display_interval_button_pressed"]
