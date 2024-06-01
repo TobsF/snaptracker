@@ -29,6 +29,10 @@ func open_new_day(new_day: Date) -> void:
 	
 	_show_report_for_date(get_selected_date())
 	
+func clear_interval() -> void:
+	interval_start = null
+	interval_end = null
+	
 func set_interval(start: Date, end: Date) -> void:
 	interval_start = start
 	interval_end = end

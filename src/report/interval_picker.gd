@@ -1,6 +1,8 @@
 extends HBoxContainer
+class_name IntervalPicker
 
 signal new_interval(start: Date, end: Date)
+signal reset_interval()
 
 @onready var item_list: ItemList = %ItemList
 @onready var month_label: Label = %MonthLabel
@@ -30,6 +32,13 @@ func _ready() -> void:
 	year = int(date_dict["year"])
 	_fill_items(month)
 
+func clear_interval() -> void:
+	select_first = true
+	selected_start = null
+	selected_end = null
+	_fill_items(month)
+	reset_interval.emit()
+	
 
 func _fill_items(for_month: int) -> void:
 	month_label.text = _month_to_string(for_month)

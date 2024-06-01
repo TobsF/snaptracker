@@ -22,6 +22,19 @@ func set_interval(start: Date, end: Date)  -> void:
 		%NextDayButton.show()
 
 	_update_date_text()
+	
+func clear_interval() -> void:
+	interval_start = null
+	interval_end = null
+	var old_day = selected_day
+	selected_day = Date.current_as_date()
+	SelectedDay.selected_day = Date.current_as_date()
+	new_day.emit(old_day, selected_day.duplicated())
+	
+	%PreviousDayButton.show()
+	%NextDayButton.show()
+	
+	_update_date_text()
 
 func _on_previous_day_button_pressed() -> void:
 	selected_day = Date.get_previous(selected_day)

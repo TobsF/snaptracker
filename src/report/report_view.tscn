@@ -43,8 +43,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Total"
 
-[node name="TotalCheckButton" type="CheckButton" parent="."]
+[node name="IntervalControlContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="IntervalResetButton" type="Button" parent="IntervalControlContainer"]
+layout_mode = 2
+text = "Reset Interval"
+
+[node name="TotalCheckButton" type="CheckButton" parent="IntervalControlContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Total"
@@ -68,6 +78,8 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="new_interval" from="IntervalPicker" to="." method="_on_interval_picker_new_interval"]
+[connection signal="reset_interval" from="IntervalPicker" to="." method="_on_interval_picker_reset_interval"]
 [connection signal="pressed" from="ButtonContainer/DisplayIntervalButton" to="." method="_on_display_interval_button_pressed"]
 [connection signal="new_day" from="DaySelector" to="." method="_on_day_selector_new_day"]
-[connection signal="toggled" from="TotalCheckButton" to="." method="_on_total_check_button_toggled"]
+[connection signal="pressed" from="IntervalControlContainer/IntervalResetButton" to="." method="_on_interval_reset_button_pressed"]
+[connection signal="toggled" from="IntervalControlContainer/TotalCheckButton" to="." method="_on_total_check_button_toggled"]
