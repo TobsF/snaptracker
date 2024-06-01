@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://chalvtlpjhj0r"]
+
+[ext_resource type="PackedScene" uid="uid://euos5mhsb35v" path="res://global_scaler.tscn" id="1_pwrtq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h03sn"]
+
+[node name="Background" type="Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_h03sn")
+centered = false
+
+[node name="GlobalScaler" parent="." instance=ExtResource("1_pwrtq")]

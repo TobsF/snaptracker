@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgjqv87s428vj"]
+
+[ext_resource type="Script" path="res://activity.gd" id="1_yrv34"]
+
+[sub_resource type="Theme" id="Theme_g4nif"]
+
+[node name="Activity" type="HBoxContainer"]
+theme = SubResource("Theme_g4nif")
+alignment = 1
+script = ExtResource("1_yrv34")
+
+[node name="ActivityEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "ACTIVITY"
+expand_to_text_length = true
+
+[node name="TimerEdit" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "00:00:00"
+expand_to_text_length = true
+
+[connection signal="focus_entered" from="TimerEdit" to="." method="_on_timer_edit_focus_entered"]
+[connection signal="focus_exited" from="TimerEdit" to="." method="_on_timer_edit_focus_exited"]
+[connection signal="text_submitted" from="TimerEdit" to="." method="_on_timer_edit_text_submitted"]

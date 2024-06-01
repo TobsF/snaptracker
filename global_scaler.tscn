@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://euos5mhsb35v"]
+
+[ext_resource type="Script" path="res://global_scaler.gd" id="1_u4aa4"]
+
+[node name="GlobalScaler" type="Node"]
+script = ExtResource("1_u4aa4")
