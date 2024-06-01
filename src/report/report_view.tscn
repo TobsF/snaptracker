@@ -33,6 +33,7 @@ stretch_mode = 5
 flip_v = true
 
 [node name="DaySelector" parent="." instance=ExtResource("2_ngwd0")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
