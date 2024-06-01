@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkrdh1ugss00a"]
+
+[ext_resource type="PackedScene" uid="uid://kccesvha77mj" path="res://add_activity.tscn" id="1_t3626"]
+[ext_resource type="Script" path="res://daily_activities.gd" id="1_vq8o2"]
+
+[node name="DailyActivities" type="VBoxContainer"]
+script = ExtResource("1_vq8o2")
+
+[node name="DayLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Monday"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AddActivity" parent="VBoxContainer" node_paths=PackedStringArray("target_container") instance=ExtResource("1_t3626")]
+layout_mode = 2
+target_container = NodePath("../VBoxContainer")
