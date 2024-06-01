@@ -32,6 +32,7 @@ func open_new_day(new_day: Date) -> void:
 func clear_interval() -> void:
 	interval_start = null
 	interval_end = null
+	total_toggled = false
 	
 func set_interval(start: Date, end: Date) -> void:
 	interval_start = start
