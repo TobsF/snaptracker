@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cccbqcydu2h30"]
 
-[ext_resource type="Script" path="res://day_selector.gd" id="1_m4qrk"]
+[ext_resource type="Script" path="res://src/activities/day_selector.gd" id="1_m4qrk"]
 [ext_resource type="Texture2D" uid="uid://bicdveuejq1fv" path="res://resources/buttons/next.png" id="1_sagxx"]
 [ext_resource type="Texture2D" uid="uid://cd6gqqp4yin8d" path="res://resources/buttons/next_hover.png" id="2_swmp7"]
 

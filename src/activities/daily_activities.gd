@@ -1,7 +1,7 @@
 extends VBoxContainer
 class_name DailyActivities
 
-const ACTIVITY_RESOURCE: Resource = preload("res://activity.tscn")
+const ACTIVITY_RESOURCE: Resource = preload("res://src/activities/activity.tscn")
 
 func _ready() -> void:
 	_create_activities_from_day(SelectedDay.selected_day)

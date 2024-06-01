@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bgjqv87s428vj"]
 
-[ext_resource type="Script" path="res://activity.gd" id="1_yrv34"]
-[ext_resource type="Texture2D" uid="uid://scrrmhfudf2s" path="res://resources/buttons/play.png" id="2_5u05j"]
-[ext_resource type="Texture2D" uid="uid://cuo20bny42d52" path="res://resources/buttons/play_hover.png" id="3_fkrv8"]
-[ext_resource type="Texture2D" uid="uid://br0fv28n5c3ap" path="res://resources/buttons/stop.png" id="4_tihf0"]
-[ext_resource type="Texture2D" uid="uid://bean37gr7jal0" path="res://resources/buttons/stop_hover.png" id="5_cnjxd"]
+[ext_resource type="Script" path="res://src/activities/activity.gd" id="1_p3tdh"]
+[ext_resource type="Texture2D" uid="uid://scrrmhfudf2s" path="res://resources/buttons/play.png" id="2_mj4w3"]
+[ext_resource type="Texture2D" uid="uid://cuo20bny42d52" path="res://resources/buttons/play_hover.png" id="3_d1a00"]
+[ext_resource type="Texture2D" uid="uid://br0fv28n5c3ap" path="res://resources/buttons/stop.png" id="4_ff1fq"]
+[ext_resource type="Texture2D" uid="uid://bean37gr7jal0" path="res://resources/buttons/stop_hover.png" id="5_4nnlu"]
 
 [sub_resource type="Theme" id="Theme_g4nif"]
 
@@ -13,7 +13,7 @@ offset_right = 175.0
 offset_bottom = 31.0
 theme = SubResource("Theme_g4nif")
 alignment = 1
-script = ExtResource("1_yrv34")
+script = ExtResource("1_p3tdh")
 
 [node name="ActivityEdit" type="LineEdit" parent="."]
 layout_mode = 2
@@ -37,8 +37,8 @@ size_flags_stretch_ratio = 1.01
 [node name="PlayButton" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_5u05j")
-texture_hover = ExtResource("3_fkrv8")
+texture_normal = ExtResource("2_mj4w3")
+texture_hover = ExtResource("3_d1a00")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -46,8 +46,8 @@ stretch_mode = 5
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("4_tihf0")
-texture_hover = ExtResource("5_cnjxd")
+texture_normal = ExtResource("4_ff1fq")
+texture_hover = ExtResource("5_4nnlu")
 ignore_texture_size = true
 stretch_mode = 5
 

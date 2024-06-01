@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkrdh1ugss00a"]
 
-[ext_resource type="PackedScene" uid="uid://kccesvha77mj" path="res://add_activity.tscn" id="1_t3626"]
-[ext_resource type="Script" path="res://daily_activities.gd" id="1_vq8o2"]
+[ext_resource type="PackedScene" uid="uid://kccesvha77mj" path="res://src/activities/add_activity.tscn" id="1_t3626"]
+[ext_resource type="Script" path="res://src/activities/daily_activities.gd" id="1_vq8o2"]
 
 [node name="DailyActivities" type="VBoxContainer"]
 script = ExtResource("1_vq8o2")

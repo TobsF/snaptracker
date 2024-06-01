@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://kccesvha77mj"]
 
-[ext_resource type="Script" path="res://add_activity.gd" id="1_gowon"]
+[ext_resource type="Script" path="res://src/activities/add_activity.gd" id="1_gowon"]
 
 [node name="AddActivity" type="Button"]
 size_flags_horizontal = 0

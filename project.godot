@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Snaptracker"
-run/main_scene="res://tracker.tscn"
+run/main_scene="res://src/tracker.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-ActivityTopic="*res://activity_topic.gd"
-SelectedDay="*res://selected_day.gd"
+ActivityTopic="*res://src/activities/activity_topic.gd"
+SelectedDay="*res://src/activities/selected_day.gd"
 
 [display]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxbnokwmbbi0d"]
 
-[ext_resource type="Script" path="res://Accumulator.gd" id="1_uorpr"]
+[ext_resource type="Script" path="res://src/activities/Accumulator.gd" id="1_uorpr"]
 
 [node name="Accumulator" type="Node" groups=["accumulator"]]
 script = ExtResource("1_uorpr")
