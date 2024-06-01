@@ -16,6 +16,7 @@ func _ready() -> void:
 	%ViewContainer.add_child(tracking_node)
 
 func _on_tracking_button_pressed() -> void:
+	SelectedDay.selected_day = Date.current_as_date()
 	if report_node != null:
 		report_node.queue_free()
 	if tracking_node == null:

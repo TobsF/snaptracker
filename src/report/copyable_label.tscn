@@ -14,7 +14,7 @@ script = ExtResource("1_jwljv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
 unique_name_in_owner = true
-position = Vector2(63, 13)
+position = Vector2(61, 15)
 shape = SubResource("RectangleShape2D_1wd04")
 
 [connection signal="input_event" from="ClickableArea" to="." method="_on_clickable_area_input_event"]

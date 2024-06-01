@@ -23,7 +23,7 @@ class YearlyReport:
 	
 	func _init(init_year: int) -> void:
 		year = init_year
-		_monthly_reports.resize(12)
+		_monthly_reports.resize(13)
 	
 	func _add_monthly(monthly: MonthlyReport) -> void:
 		_monthly_reports[monthly.month] = monthly

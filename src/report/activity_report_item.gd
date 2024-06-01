@@ -17,5 +17,4 @@ func set_activity_time(activity_time: int) -> void:
 	%ActivityTime.text = String.num(float(activity_time) / 3600, 2)
 
 func set_percentage(percentage: float) -> void:
-	#todo
-	pass
+	$ActivityPercentage.value = percentage

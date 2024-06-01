@@ -4,12 +4,11 @@ class_name DaySelector
 signal new_day(old_day: Date, new_day: Date)
 
 @onready var selected_day: Date = SelectedDay.selected_day.duplicated()
-@onready var days_in_month: Array[int] = _get_days_in_month()
 @export var interval_start: Date
 @export var interval_end: Date
 
-func _process(_delta: float) -> void:
-	$DateLabel.text = "%s.%s.%s" % [selected_day.day, selected_day.month, selected_day.year]
+func _ready() -> void:
+	_update_date_text()
 
 func set_interval(start: Date, end: Date)  -> void:
 	interval_start = start
@@ -21,7 +20,8 @@ func set_interval(start: Date, end: Date)  -> void:
 	%PreviousDayButton.hide()
 	if Date.get_next(selected_day).compare(interval_end) <= 0:
 		%NextDayButton.show()
-	
+
+	_update_date_text()
 
 func _on_previous_day_button_pressed() -> void:
 	selected_day = Date.get_previous(selected_day)
@@ -31,6 +31,8 @@ func _on_previous_day_button_pressed() -> void:
 	%NextDayButton.show()
 	if interval_start and selected_day.compare(interval_start) <= 0:
 		%PreviousDayButton.hide()
+		
+	_update_date_text()
 
 func _on_next_day_button_pressed() -> void:
 	selected_day = Date.get_next(selected_day)
@@ -40,6 +42,8 @@ func _on_next_day_button_pressed() -> void:
 	%PreviousDayButton.show()
 	if interval_end and selected_day.compare(interval_end) >= 0:
 		%NextDayButton.hide()
+		
+	_update_date_text()
 
-func _get_days_in_month() -> Array[int]:
-	return Date.get_days_in_month()
+func _update_date_text() -> void:
+	$DateLabel.text = "%s.%s.%s" % [selected_day.day, selected_day.month, selected_day.year]

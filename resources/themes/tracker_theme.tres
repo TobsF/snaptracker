@@ -49,5 +49,5 @@ LineEdit/styles/focus = SubResource("StyleBoxFlat_aef1e")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_vssg1")
 MarginContainer/constants/margin_bottom = 0
 MarginContainer/constants/margin_left = 20
-MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
