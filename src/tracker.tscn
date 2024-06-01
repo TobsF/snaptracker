@@ -17,6 +17,8 @@ scale = Vector2(1151, 650)
 unique_name_in_owner = true
 offset_right = 1147.0
 offset_bottom = 644.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("2_4c3qh")
 
 [node name="ViewContainer" type="HBoxContainer" parent="MarginContainer"]
