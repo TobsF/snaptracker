@@ -7,9 +7,13 @@ extends Node2D
 
 func _ready() -> void:
 	%Label.size = label_size
-	global_position = get_window().size - label_size - margin
+	_place_on_window()
 	GlobalTextTopic.new_text.connect(_on_new_text)
 	GlobalTextTopic.new_temporary_notification.connect(_on_new_temporary_notification)
+	get_viewport().size_changed.connect(_place_on_window)
+	
+func _place_on_window() -> void:
+	global_position = get_window().size - label_size - margin
 
 func _on_new_text(text: String) -> void:
 	if %Timer.time_left > 0:
