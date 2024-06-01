@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba5shoi57k6yc"]
+
+[ext_resource type="Script" path="res://src/global_text_box.gd" id="1_xqbnb"]
+
+[node name="GlobalTextBox" type="Node2D"]
+script = ExtResource("1_xqbnb")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.581033, 0.581033, 0.581033, 1)
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccyribr17cuhf"]
+[gd_scene load_steps=7 format=3 uid="uid://ccyribr17cuhf"]
 
 [ext_resource type="Script" path="res://src/tracker.gd" id="1_bmhnn"]
 [ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_i0got"]
 [ext_resource type="Theme" uid="uid://c7v1cvt2e6440" path="res://resources/themes/tracker_theme.tres" id="2_4c3qh"]
+[ext_resource type="PackedScene" uid="uid://ba5shoi57k6yc" path="res://src/global_text_box.tscn" id="2_pgqxq"]
 [ext_resource type="PackedScene" uid="uid://euos5mhsb35v" path="res://src/global_scaler.tscn" id="3_rnt32"]
 [ext_resource type="Script" path="res://src/quit_button.gd" id="7_npnr5"]
 
@@ -42,6 +43,8 @@ offset_right = 1148.0
 offset_bottom = 33.0
 text = "X"
 script = ExtResource("7_npnr5")
+
+[node name="GlobalTextBox" parent="." instance=ExtResource("2_pgqxq")]
 
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/TrackingButton" to="." method="_on_tracking_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ReportButton" to="." method="_on_report_button_pressed"]
