@@ -6,6 +6,7 @@ class_name Activity
 var delete_released: bool = false
 var deletion_counter: int = 0
 var time_seconds: int = 0
+var date: Date
 var regex: RegEx
 
 func _ready() -> void:
@@ -32,6 +33,13 @@ func set_allotted_time(time: int) -> void:
 
 func set_activity_name(new_name: String) -> void:
 	$ActivityEdit.text = new_name
+
+func activate() -> void:
+	ActivityTopic.activity_stop.emit()
+	ActivityTopic.activity_stop.connect(_on_stop_button_pressed)
+	$BoxContainer/PlayButton.visible = false
+	$BoxContainer/StopButton.visible = true
+	$Timer.start()
 	
 func is_active() -> bool:
 	return $BoxContainer/StopButton.visible
@@ -57,13 +65,8 @@ func _on_timer_edit_focus_entered() -> void:
 func _on_timer_edit_focus_exited() -> void:
 	_update_from_input($TimerEdit.text)
 
-
 func _on_play_button_pressed() -> void:
-	ActivityTopic.activity_stop.emit()
-	ActivityTopic.activity_stop.connect(_on_stop_button_pressed)
-	$BoxContainer/PlayButton.visible = false
-	$BoxContainer/StopButton.visible = true
-	$Timer.start()
+	activate()
 
 
 func _on_stop_button_pressed() -> void:

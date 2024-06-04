@@ -23,6 +23,7 @@ func _create_activities_from_day(selected_day: Date) -> void:
 		var activity: Activity = ACTIVITY_RESOURCE.instantiate()
 		activity.set_activity_name(activity_label)
 		activity.set_allotted_time(activity_dict[activity_label])
+		activity.date = selected_day.duplicated()
 		%ActivityContainer.add_child(activity)	
 
 func _get_weekday_text(selected_day: Date) -> String:
