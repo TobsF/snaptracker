@@ -1,10 +1,13 @@
 extends Node
 
+var autosave_enabled: bool = true
+
 func _ready() -> void:
 	_on_timer_timeout()
 
 func _on_timer_timeout() -> void:
-	store_activites()
+	if autosave_enabled:
+		store_activites()
 	await get_tree().create_timer(10).timeout
 	_on_timer_timeout()
 	
