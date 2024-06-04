@@ -88,6 +88,9 @@ stretch_mode = 5
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="ToBeDeleted" type="Node" parent="."]
+unique_name_in_owner = true
+
 [connection signal="button_down" from="DeleteButton" to="." method="_on_delete_button_button_down"]
 [connection signal="button_up" from="DeleteButton" to="." method="_on_delete_button_button_up"]
 [connection signal="text_changed" from="ActivityEdit" to="." method="_on_activity_edit_text_changed"]

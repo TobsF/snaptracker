@@ -47,7 +47,7 @@ func _compute_new_daily_activities(existing_activities: Dictionary, activities: 
 	for activity: Activity in activities:
 		if not activity.get_activity_name().is_empty():
 			var key_to_upper: String = activity.get_activity_name().to_upper()
-			if activity.marked_for_deletion:
+			if activity.is_marked_for_deletion():
 				to_be_deleted.append(key_to_upper)
 			if new_activites.has(key_to_upper):
 				new_activites[key_to_upper] += activity.get_allotted_time()

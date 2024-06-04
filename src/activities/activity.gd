@@ -1,18 +1,24 @@
 extends HBoxContainer
 class_name Activity
 
+const ACTIVITY_RESOURCE: Resource = preload("res://src/activities/activity.tscn")
+
 @onready var deletion_sprite: Sprite2D = %DeletionSprite
+@onready var to_be_deleted: Node = %ToBeDeleted
 
 var delete_released: bool = false
 var deletion_counter: int = 0
 var marked_for_deletion: bool = false
+var deletion_timestamp: int
 var time_seconds: int = 0
 var date: Date
 var regex: RegEx
+var _old_name: String
 
 func _ready() -> void:
 	regex = RegEx.new()
 	regex.compile("(\\d+\\d+):(\\d+\\d+):(\\d+\\d+)")
+	_old_name = get_activity_name()
 
 func _process(_delta: float) -> void:
 	var minutes: int = int(time_seconds) / 60 % 60
@@ -44,6 +50,11 @@ func activate() -> void:
 	
 func is_active() -> bool:
 	return $BoxContainer/StopButton.visible
+	
+func is_marked_for_deletion() -> bool:
+	if deletion_timestamp:
+		return true
+	return false
 
 func _update_from_input(new_text: String) -> void:
 	var match: RegExMatch = regex.search(new_text)
@@ -82,8 +93,10 @@ func _on_timer_timeout() -> void:
 
 func _on_activity_edit_text_changed(new_text: String) -> void:
 	var caret_column = %ActivityEdit.caret_column
+	_add_stale_name(_old_name, new_text.to_upper())
 	%ActivityEdit.text = new_text.to_upper()
 	%ActivityEdit.caret_column = caret_column
+	_old_name = %ActivityEdit.text
 
 
 func _on_delete_button_button_down() -> void:
@@ -95,7 +108,7 @@ func _increase_deletion_counter():
 		delete_released = false
 		deletion_sprite.scale.y = 0
 	elif deletion_counter >= 10:
-		marked_for_deletion = true
+		deletion_timestamp = Time.get_ticks_msec()
 		hide()
 	else:
 		deletion_counter += 1
@@ -105,3 +118,14 @@ func _increase_deletion_counter():
 
 func _on_delete_button_button_up() -> void:
 	delete_released = true
+
+func _add_stale_name(stale_name: String, new_name: String) -> void:
+	for stale: Activity in to_be_deleted.get_children():
+		if stale.get_activity_name() == new_name or (Time.get_ticks_msec() - stale.deletion_timestamp) > 30000:
+			stale.queue_free()
+	
+	var stale_node: Activity = ACTIVITY_RESOURCE.instantiate()
+	stale_node.set_activity_name(stale_name)
+	stale_node.deletion_timestamp = Time.get_ticks_msec()
+	stale_node.hide()
+	to_be_deleted.add_child(stale_node)
