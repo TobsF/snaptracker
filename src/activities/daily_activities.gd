@@ -9,16 +9,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	%DayLabel.text = _get_weekday_text(SelectedDay.selected_day)
 
-func open_new_day(old_day: Date, new_selected_day: Date) -> void:
-	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
-	accumulator.store_activites()
+func open_new_day(new_selected_day: Date) -> void:
+	Accumulator.store_activites()
 	for tracker: Node in get_tree().get_nodes_in_group("activity_tracking"):
 		tracker.queue_free()
 	_create_activities_from_day(new_selected_day)
 
 func _create_activities_from_day(selected_day: Date) -> void:
-	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
-	var activity_dict: Dictionary = accumulator.read_daily_from_file(selected_day)
+	var activity_dict: Dictionary = Accumulator.read_daily_from_file(selected_day)
 	for activity_label: String in activity_dict:
 		var activity: Activity = ACTIVITY_RESOURCE.instantiate()
 		activity.set_activity_name(activity_label)

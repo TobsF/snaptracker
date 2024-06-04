@@ -8,7 +8,5 @@ func _process(_delta: float) -> void:
 	global_position =  Vector2(get_window().size.x - size.x, 0)
 
 func _on_pressed() -> void:
-	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
-	if accumulator != null:
-		accumulator.store_activites()
+	Accumulator.store_activites()
 	get_tree().quit()

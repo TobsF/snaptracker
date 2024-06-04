@@ -1,8 +1,12 @@
 extends Node
-class_name Accumulator
+
+func _ready() -> void:
+	_on_timer_timeout()
 
 func _on_timer_timeout() -> void:
 	store_activites()
+	await get_tree().create_timer(10).timeout
+	_on_timer_timeout()
 	
 func store_activites() -> void:
 	var nodes: Array[Node] = get_tree().get_nodes_in_group("activity_tracking")
