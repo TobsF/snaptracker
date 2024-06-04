@@ -10,5 +10,5 @@ func _process(_delta: float) -> void:
 func _on_pressed() -> void:
 	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
 	if accumulator != null:
-		accumulator.store_activites(SelectedDay.selected_day)
+		accumulator.store_activites()
 	get_tree().quit()

@@ -8,6 +8,8 @@ var tracking_node: TrackingView
 var report_node: Node
 var compact_view: CompactView
 
+@onready var accumulator: Accumulator = %Accumulator
+
 func _ready() -> void:
 	if(OS.has_feature("window_decoration")):
 		get_window().borderless = false
@@ -36,9 +38,7 @@ func _on_tracking_button_pressed() -> void:
 
 
 func _on_report_button_pressed() -> void:
-	var accumulator: Accumulator = get_tree().get_first_node_in_group("accumulator")
-	if accumulator != null:
-		accumulator.store_activites(SelectedDay.selected_day)
+	accumulator.store_activites()
 	if tracking_node != null:
 		var activity: Activity = _get_active_activity()
 		if activity:

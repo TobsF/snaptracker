@@ -2,11 +2,20 @@ extends Node
 class_name Accumulator
 
 func _on_timer_timeout() -> void:
-	store_activites(SelectedDay.selected_day)
+	store_activites()
 	
-func store_activites(selected_day: Date) -> void:
+func store_activites() -> void:
+	var nodes: Array[Node] = get_tree().get_nodes_in_group("activity_tracking")
+	var new_activities: Array[Activity] = []
+	for activity: Node in nodes:
+		new_activities.append(activity as Activity)
+	var selected_day: Date
+	if new_activities.size() == 0:
+		return
+	else:
+		selected_day = new_activities[0].date
 	var activity_dict: Dictionary = _read_file(selected_day.month, selected_day.year)
-	activity_dict[selected_day.to_key()] = _compute_new_daily_activities()
+	activity_dict[selected_day.to_key()] = _compute_new_daily_activities(activity_dict[selected_day.to_key()], new_activities)
 	_store_activities(activity_dict, selected_day.month, selected_day.year)
 
 func read_daily_from_file(selected_day: Date) -> Dictionary:
@@ -25,13 +34,19 @@ func _store_activities(dict: Dictionary, month: int, year: int) -> void:
 func _read_file(month: int, year: int) -> Dictionary:
 	return ActivitiesReader.read_monthly_activites(month, year)
 
-func _compute_new_daily_activities() -> Dictionary:
+func _compute_new_daily_activities(existing_activities: Dictionary, activities: Array[Activity]) -> Dictionary:
 	var new_activites: Dictionary = {}
-	for activity: Activity in get_tree().get_nodes_in_group("activity_tracking"):
+	var to_be_deleted: Array[String] = []
+	for activity: Activity in activities:
 		if not activity.get_activity_name().is_empty():
 			var key_to_upper: String = activity.get_activity_name().to_upper()
+			if activity.marked_for_deletion:
+				to_be_deleted.append(key_to_upper)
 			if new_activites.has(key_to_upper):
 				new_activites[key_to_upper] += activity.get_allotted_time()
 			else:
 				new_activites[key_to_upper] = activity.get_allotted_time()
+	new_activites.merge(existing_activities)
+	for key_to_be_deleted: String in to_be_deleted:
+		new_activites.erase(key_to_be_deleted)
 	return new_activites

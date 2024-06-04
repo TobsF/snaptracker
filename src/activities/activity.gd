@@ -5,6 +5,7 @@ class_name Activity
 
 var delete_released: bool = false
 var deletion_counter: int = 0
+var marked_for_deletion: bool = false
 var time_seconds: int = 0
 var date: Date
 var regex: RegEx
@@ -94,7 +95,8 @@ func _increase_deletion_counter():
 		delete_released = false
 		deletion_sprite.scale.y = 0
 	elif deletion_counter >= 10:
-		queue_free()
+		marked_for_deletion = true
+		hide()
 	else:
 		deletion_counter += 1
 		var tween: Tween = create_tween()
