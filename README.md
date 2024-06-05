@@ -1,2 +1,26 @@
-# snaptracker
-A tracking tool written in Godot
+# SnapTracker
+A time-tracking tool created in Godot.
+
+SnapTracker was made to help you keep track of how long you have been working on certain tasks. Once you are done tracking, you can check all your tracked data in the report view.
+
+All data is stored in the default app userdata path in monthly JSON-files (see https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html).
+
+## Tracking View
+
+![Tracking Demo](./documentation/demo/tracking_demo.GIF)
+
+Here you can track your activities. You can:
+
+* add new activities and give them arbitrary names
+* start tracking an activity
+* update the time you spent on an activity
+
+There is also a compact view that you can pin in place, which will then always stay on top and display the activity currently being tracked.
+
+## Report View
+
+![Report Demo](./documentation/demo/report_demo.GIF)
+
+In the report view you'll get an overview of all your tracked activities.
+
+You can jump back to arbitrary days or select an interval that you would like to look at. Given you have selected an interval, you can also view all tracked activities in a combined view.
