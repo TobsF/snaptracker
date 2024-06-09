@@ -4,6 +4,8 @@ const PACKED_TRACKING_SCENE: PackedScene = preload("res://src/activities/trackin
 const PACKED_REPORT_SCENE: PackedScene = preload("res://src/report/report_view.tscn")
 const PACKED_COMPACT_VIEW_SCENE: PackedScene = preload("res://src/activities/compact_view.tscn")
 
+@onready var current_tracking: CurrentTracking = %CurrentTracking
+
 var tracking_node: TrackingView
 var report_node: Node
 var compact_view: CompactView
@@ -20,7 +22,7 @@ func _on_tracking_button_pressed() -> void:
 	if report_node != null:
 		report_node.queue_free()
 	if tracking_node == null:	
-		var activity: Activity = _get_active_activity()
+		var activity: Activity = current_tracking.get_current()
 		if activity:
 			SelectedDay.selected_day = activity.date
 		tracking_node = PACKED_TRACKING_SCENE.instantiate()
@@ -29,19 +31,15 @@ func _on_tracking_button_pressed() -> void:
 		if activity:
 			var activity_name := activity.get_activity_name()
 			var time := activity.get_allotted_time()
-			activity.free()
+			current_tracking.clear()
 			tracking_node.init_active(activity_name, time)
-
-		
-
 
 func _on_report_button_pressed() -> void:
 	Accumulator.store_activites()
 	if tracking_node != null:
 		var activity: Activity = _get_active_activity()
 		if activity:
-			activity.hide()
-			activity.reparent(self)
+			current_tracking.set_current(activity)
 		tracking_node.queue_free()
 	if report_node == null:
 		LoadedReports.reload()

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2duff3uuqbra"]
+
+[ext_resource type="Script" path="res://src/activities/current_tracking.gd" id="1_msbpv"]
+
+[node name="CurrentTracking" type="VBoxContainer"]
+offset_right = 78.0
+offset_bottom = 50.0
+size_flags_vertical = 8
+script = ExtResource("1_msbpv")
+
+[node name="CurrentLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Current
+Tracking"
+uppercase = true
+
+[node name="ActivityName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "UWE90"
+clip_text = true
+text_overrun_behavior = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

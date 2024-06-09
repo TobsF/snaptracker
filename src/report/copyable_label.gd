@@ -16,7 +16,7 @@ func _on_clickable_area_input_event(_viewport: Node, event: InputEvent, _shape_i
 
 
 func _on_clickable_area_mouse_entered() -> void:
-	GlobalTextTopic.new_text.emit("Leftclick to copy")
+	GlobalTextTopic.new_text.emit("Left-click to copy")
 
 
 func _on_clickable_area_mouse_exited() -> void:
