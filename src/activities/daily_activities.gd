@@ -1,6 +1,8 @@
 extends VBoxContainer
 class_name DailyActivities
 
+@onready var activity_container: VBoxContainer = %ActivityContainer
+
 const ACTIVITY_RESOURCE: Resource = preload("res://src/activities/activity.tscn")
 
 func _ready() -> void:
@@ -11,7 +13,7 @@ func _process(_delta: float) -> void:
 
 func open_new_day(new_selected_day: Date) -> void:
 	Accumulator.store_activites()
-	for tracker: Node in get_tree().get_nodes_in_group("activity_tracking"):
+	for tracker: Node in activity_container.get_children():
 		tracker.queue_free()
 	_create_activities_from_day(new_selected_day)
 

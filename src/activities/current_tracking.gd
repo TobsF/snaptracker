@@ -1,7 +1,7 @@
 extends VBoxContainer
 class_name CurrentTracking
 
-signal to_tracking
+signal clicked(current: Activity)
 
 @onready var activity_name: Label = %ActivityName
 
@@ -23,7 +23,7 @@ func clear() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		to_tracking.emit()
+		clicked.emit(_current)
 
 func _on_mouse_entered() -> void:
 	GlobalTextTopic.new_text.emit("Left-click to return to tracked activity")

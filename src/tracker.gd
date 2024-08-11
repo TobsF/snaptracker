@@ -13,8 +13,7 @@ var compact_view: CompactView
 func _ready() -> void:
 	if(OS.has_feature("window_decoration")):
 		get_window().borderless = false
-	tracking_node = PACKED_TRACKING_SCENE.instantiate()
-	tracking_node.to_compact_view.connect(_on_to_compact_view)
+	_init_tracking_node()
 	%ViewContainer.add_child(tracking_node)
 
 func _on_tracking_button_pressed() -> void:
@@ -25,8 +24,7 @@ func _on_tracking_button_pressed() -> void:
 		var activity: Activity = current_tracking.get_current()
 		if activity:
 			SelectedDay.selected_day = activity.date
-		tracking_node = PACKED_TRACKING_SCENE.instantiate()
-		tracking_node.to_compact_view.connect(_on_to_compact_view)
+		_init_tracking_node()
 		%ViewContainer.add_child(tracking_node)
 		if activity:
 			var activity_name := activity.get_activity_name()
@@ -64,3 +62,20 @@ func _get_active_activity() -> Activity:
 		if activity.is_active():
 			return activity
 	return null
+
+func _on_currently_active_hidden(current: Activity) -> void:
+	await Accumulator.saved
+	current_tracking.set_current(current)
+
+
+func _on_current_tracking_clicked(current: Activity) -> void:
+	if is_instance_valid(report_node):
+		_on_tracking_button_pressed()
+	elif is_instance_valid(tracking_node):
+		tracking_node.free()
+		_on_tracking_button_pressed()
+		
+func _init_tracking_node() -> void:
+	tracking_node = PACKED_TRACKING_SCENE.instantiate()
+	tracking_node.to_compact_view.connect(_on_to_compact_view)
+	tracking_node.currently_active_hidden.connect(_on_currently_active_hidden)
