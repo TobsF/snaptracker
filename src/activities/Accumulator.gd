@@ -1,5 +1,7 @@
 extends Node
 
+signal saved
+
 var autosave_enabled: bool = true
 
 func _ready() -> void:
@@ -22,8 +24,10 @@ func store_activites() -> void:
 	else:
 		selected_day = new_activities[0].date
 	var activity_dict: Dictionary = _read_file(selected_day.month, selected_day.year)
-	activity_dict[selected_day.to_key()] = _compute_new_daily_activities(activity_dict[selected_day.to_key()], new_activities)
+	var existing_dailies: Dictionary = activity_dict[selected_day.to_key()] if activity_dict.has(selected_day.to_key()) else {}
+	activity_dict[selected_day.to_key()] = _compute_new_daily_activities(existing_dailies, new_activities)
 	_store_activities(activity_dict, selected_day.month, selected_day.year)
+	saved.emit()
 
 func read_daily_from_file(selected_day: Date) -> Dictionary:
 	var monthly_file: Dictionary = _read_file(selected_day.month, selected_day.year)
