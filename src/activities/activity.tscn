@@ -11,7 +11,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hb3bi"]
 size = Vector2(29, 32)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8i4c"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmyel"]
 content_margin_left = 10.0
 content_margin_right = 10.0
 
@@ -23,7 +23,7 @@ content_margin_right = 10.0
 content_margin_left = 10.0
 content_margin_right = 10.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmyel"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8i4c"]
 content_margin_left = 10.0
 content_margin_right = 10.0
 
@@ -43,10 +43,10 @@ texture = SubResource("PlaceholderTexture2D_hb3bi")
 
 [node name="DeleteButton" type="Button" parent="."]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_x8i4c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lmyel")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_bue37")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2fvko")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_lmyel")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x8i4c")
 text = "x"
 
 [node name="ActivityEdit" type="LineEdit" parent="."]
