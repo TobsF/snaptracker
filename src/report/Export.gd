@@ -15,11 +15,16 @@ func _on_export_pressed() -> void:
 
 
 func _on_csv_export_button_pressed() -> void:
-	pass # Replace with function body.
+	var file = FileAccess.open("user://export.csv", FileAccess.WRITE)
+	file.store_string(_create_csv_string(selected_reports))
+	GlobalTextTopic.new_temporary_notification.emit("Saved to " + file.get_path_absolute() + ".", 5, true)
+	file.close()
+
 
 
 func _on_clipboard_export_button_pressed() -> void:
 	DisplayServer.clipboard_set(_create_csv_string(selected_reports))
+	GlobalTextTopic.new_temporary_notification.emit("Saved to clipboard.", 2, true)
 
 func _create_csv_string(reports: Array[DailyReport]) -> String:
 	var csv_lines: Array[String] = [';']
