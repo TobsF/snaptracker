@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvu75jbnwe7w1"]
+[gd_scene load_steps=9 format=3 uid="uid://cvu75jbnwe7w1"]
 
 [ext_resource type="PackedScene" uid="uid://votsouooyknd" path="res://src/report/interval_picker.tscn" id="1_3yiap"]
 [ext_resource type="Script" path="res://src/report/report_view.gd" id="1_maskl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ddsrge8bsgij8" path="res://resources/buttons/unfold.png" id="2_p7x26"]
 [ext_resource type="Texture2D" uid="uid://b14squkq4hdi" path="res://resources/buttons/unfold_hover.png" id="3_ts4gc"]
 [ext_resource type="BitMap" uid="uid://blimld5uev4mj" path="res://resources/buttons/unfold_flipped_v_clickmask.png" id="4_a5ad8"]
+[ext_resource type="PackedScene" uid="uid://d0lfsgpdbhe3v" path="res://src/report/Export.tscn" id="7_poawe"]
 
 [node name="ReportView" type="VBoxContainer"]
 size_flags_horizontal = 3
@@ -43,17 +44,29 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Total"
 
-[node name="IntervalControlContainer" type="HBoxContainer" parent="."]
+[node name="ButtonMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="HButtonContainer" type="HBoxContainer" parent="ButtonMargin"]
+layout_mode = 2
+
+[node name="Export" parent="ButtonMargin/HButtonContainer" instance=ExtResource("7_poawe")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IntervalControlContainer" type="HBoxContainer" parent="ButtonMargin/HButtonContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 0
 
-[node name="IntervalResetButton" type="Button" parent="IntervalControlContainer"]
+[node name="IntervalResetButton" type="Button" parent="ButtonMargin/HButtonContainer/IntervalControlContainer"]
 layout_mode = 2
 text = "Reset Interval"
 
-[node name="TotalCheckButton" type="CheckButton" parent="IntervalControlContainer"]
+[node name="TotalCheckButton" type="CheckButton" parent="ButtonMargin/HButtonContainer/IntervalControlContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -81,5 +94,5 @@ layout_mode = 2
 [connection signal="reset_interval" from="IntervalPicker" to="." method="_on_interval_picker_reset_interval"]
 [connection signal="pressed" from="ButtonContainer/DisplayIntervalButton" to="." method="_on_display_interval_button_pressed"]
 [connection signal="new_day" from="DaySelector" to="." method="_on_day_selector_new_day"]
-[connection signal="pressed" from="IntervalControlContainer/IntervalResetButton" to="." method="_on_interval_reset_button_pressed"]
-[connection signal="toggled" from="IntervalControlContainer/TotalCheckButton" to="." method="_on_total_check_button_toggled"]
+[connection signal="pressed" from="ButtonMargin/HButtonContainer/IntervalControlContainer/IntervalResetButton" to="." method="_on_interval_reset_button_pressed"]
+[connection signal="toggled" from="ButtonMargin/HButtonContainer/IntervalControlContainer/TotalCheckButton" to="." method="_on_total_check_button_toggled"]
