@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0lfsgpdbhe3v"]
+
+[ext_resource type="Script" path="res://src/report/Export.gd" id="1_c37de"]
+
+[node name="Export" type="HBoxContainer"]
+script = ExtResource("1_c37de")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Export" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Export"
+
+[node name="ExportButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CsvExportButton" type="Button" parent="VBoxContainer/ExportButtonsContainer"]
+layout_mode = 2
+text = "to CSV"
+
+[node name="ClipboardExportButton" type="Button" parent="VBoxContainer/ExportButtonsContainer"]
+layout_mode = 2
+text = "to Clipboard"
+
+[connection signal="pressed" from="VBoxContainer/Export" to="." method="_on_export_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExportButtonsContainer/CsvExportButton" to="." method="_on_csv_export_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExportButtonsContainer/ClipboardExportButton" to="." method="_on_clipboard_export_button_pressed"]

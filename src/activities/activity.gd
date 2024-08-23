@@ -21,13 +21,7 @@ func _ready() -> void:
 	_old_name = get_activity_name()
 
 func _process(_delta: float) -> void:
-	var minutes: int = int(time_seconds) / 60 % 60
-	var seconds: int = int(time_seconds) % 60
-	var hours: int = int(time_seconds) / 3600
-	
-	# Format the time as "HH:MM:SS"
-	var formatted_time: String = "%02d:%02d:%02d" % [hours, minutes, seconds]
-	$TimerEdit.text = formatted_time
+	$TimerEdit.text = TimeFormatter.format(time_seconds)
 	
 func get_allotted_time() -> int:
 	return time_seconds

@@ -68,7 +68,7 @@ func _on_currently_active_hidden(current: Activity) -> void:
 	current_tracking.set_current(current)
 
 
-func _on_current_tracking_clicked(current: Activity) -> void:
+func _on_current_tracking_clicked(_current: Activity) -> void:
 	if is_instance_valid(report_node):
 		_on_tracking_button_pressed()
 	elif is_instance_valid(tracking_node):
