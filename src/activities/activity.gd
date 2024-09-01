@@ -5,6 +5,7 @@ const ACTIVITY_RESOURCE: Resource = preload("res://src/activities/activity.tscn"
 
 @onready var deletion_sprite: Sprite2D = %DeletionSprite
 @onready var to_be_deleted: Node = %ToBeDeleted
+@onready var box_container: BoxContainer = $BoxContainer
 
 var delete_released: bool = false
 var deletion_counter: int = 0
@@ -22,6 +23,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	$TimerEdit.text = TimeFormatter.format(time_seconds)
+	box_container.visible = not CurrentTracking.is_tracking
 	
 func get_allotted_time() -> int:
 	return time_seconds

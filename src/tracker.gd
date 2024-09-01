@@ -17,29 +17,16 @@ func _ready() -> void:
 	%ViewContainer.add_child(tracking_node)
 
 func _on_tracking_button_pressed() -> void:
-	SelectedDay.selected_day = Date.current_as_date()
-	if report_node != null:
-		report_node.queue_free()
-	if tracking_node == null:	
-		var activity: Activity = current_tracking.get_current()
-		if activity:
-			SelectedDay.selected_day = activity.date
-		_init_tracking_node()
-		%ViewContainer.add_child(tracking_node)
-		if activity:
-			var activity_name := activity.get_activity_name()
-			var time := activity.get_allotted_time()
-			current_tracking.clear()
-			tracking_node.init_active(activity_name, time)
+	_update_or_init_tracking()
 
 func _on_report_button_pressed() -> void:
 	Accumulator.store_activites()
-	if tracking_node != null:
+	if is_instance_valid(tracking_node):
 		var activity: Activity = _get_active_activity()
-		if activity:
-			current_tracking.set_current(activity)
+		if is_instance_valid(activity):
+			_set_current_tracking(activity)
 		tracking_node.queue_free()
-	if report_node == null:
+	if not is_instance_valid(report_node):
 		LoadedReports.reload()
 		report_node = PACKED_REPORT_SCENE.instantiate()
 		%ViewContainer.add_child(report_node)
@@ -65,7 +52,7 @@ func _get_active_activity() -> Activity:
 
 func _on_currently_active_hidden(current: Activity) -> void:
 	await Accumulator.saved
-	current_tracking.set_current(current)
+	_set_current_tracking(current)
 
 
 func _on_current_tracking_clicked(_current: Activity) -> void:
@@ -79,3 +66,30 @@ func _init_tracking_node() -> void:
 	tracking_node = PACKED_TRACKING_SCENE.instantiate()
 	tracking_node.to_compact_view.connect(_on_to_compact_view)
 	tracking_node.currently_active_hidden.connect(_on_currently_active_hidden)
+	tracking_node.new_day_selected.connect(_on_new_day_selected)
+
+func _set_current_tracking(current: Activity) -> void:
+	current.remove_from_group("activity_tracking")
+	current_tracking.set_current(current)
+	
+func _on_new_day_selected(new_day: Date) -> void:
+	var current_activity: Activity = current_tracking.get_current()
+	if is_instance_valid(current_activity):
+		if current_activity.date.compare(new_day) == 0:
+			_update_or_init_tracking()
+	
+func _update_or_init_tracking() -> void:
+	SelectedDay.selected_day = Date.current_as_date()
+	var activity: Activity = current_tracking.get_current()
+	if is_instance_valid(report_node):
+		report_node.queue_free()
+	if not is_instance_valid(tracking_node):
+		if is_instance_valid(activity):
+			SelectedDay.selected_day = activity.date
+		_init_tracking_node()
+		%ViewContainer.add_child(tracking_node)
+	if is_instance_valid(activity):
+		var activity_name := activity.get_activity_name()
+		var time := activity.get_allotted_time()
+		current_tracking.clear()
+		tracking_node.init_active(activity_name, time)

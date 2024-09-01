@@ -1,6 +1,8 @@
 extends VBoxContainer
 class_name CurrentTracking
 
+static var is_tracking: bool = false
+
 signal clicked(current: Activity)
 
 @onready var activity_name: Label = %ActivityName
@@ -13,6 +15,7 @@ func set_current(activity: Activity) -> void:
 	_current = activity
 	activity_name.text = activity.get_activity_name()
 	show()
+	is_tracking = true
 	
 func get_current() -> Activity:
 	return _current
@@ -20,6 +23,7 @@ func get_current() -> Activity:
 func clear() -> void:
 	hide()
 	_current.free()
+	is_tracking = false
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

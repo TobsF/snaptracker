@@ -42,3 +42,6 @@ func _get_weekday_text(selected_day: Date) -> String:
 			return "Sunday"
 		_:
 			return "Wednesday, my dudes."
+			
+func get_activity_nodes() -> Array[Node]:
+	return activity_container.get_children()
