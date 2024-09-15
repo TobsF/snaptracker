@@ -73,12 +73,12 @@ func _load_data_for_interval(start: Date, end: Date) -> Array[DailyReport]:
 		var daily_report: DailyReport = LoadedReports.get_daily_report(current_day)
 		if daily_report:
 			reports.append(daily_report)
-			for activity: String in daily_report.get_activities():
+			for activity: ActivityModel in daily_report.get_activities():
 				_interval_total_time += daily_report.get_time_for_activity(activity).time
-				if _interval_times.has(activity):
-					_interval_times[activity] += daily_report.get_time_for_activity(activity).time
+				if _interval_times.has(activity.name):
+					_interval_times[activity.name] += daily_report.get_time_for_activity(activity).time
 				else:
-					_interval_times[activity] = daily_report.get_time_for_activity(activity).time
+					_interval_times[activity.name] = daily_report.get_time_for_activity(activity).time
 		current_day = Date.get_next(current_day)
 	
 	return reports
@@ -86,8 +86,8 @@ func _load_data_for_interval(start: Date, end: Date) -> Array[DailyReport]:
 func _render_items(activities: Array) -> void:
 	if not activities:
 		return
-	for activity in activities:
-		_add_activity(activity, _get_time(activity), _get_percentage(activity))
+	for activity: ActivityModel in activities:
+		_add_activity(activity.name, _get_time(activity), _get_percentage(activity))
 
 func _add_activity(activity_name: String, time: int, percentage: float) -> void:
 	var already_present = false
@@ -120,15 +120,15 @@ func _is_interval_chosen() -> bool:
 func _is_total() -> bool:
 	return total_toggled
 	
-func _get_percentage(activity: String) -> float:
+func _get_percentage(activity: ActivityModel) -> float:
 	if _is_total():
-		return _interval_times[activity] / float(_interval_total_time)
+		return _interval_times[activity.name] / float(_interval_total_time)
 	else:
 		return _get_report(get_selected_date()).get_time_for_activity(activity).percentage_of_daily
 
-func _get_time(activity: String) -> int:
+func _get_time(activity: ActivityModel) -> int:
 	if _is_total():
-		return _interval_times[activity]
+		return _interval_times[activity.name]
 	else:
 		return _get_report(get_selected_date()).get_time_for_activity(activity).time
 			

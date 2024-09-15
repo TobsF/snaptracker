@@ -1,5 +1,11 @@
 class_name Entity
 
+class Id:
+	var value: int
+	
+	func _init(init_value: int):
+		value = init_value
+
 static func get_table_name() -> String:
 	print("Error: get_table_name must be overridden!")
 	return ""

@@ -4,37 +4,34 @@ class_name Activity
 const ACTIVITY_RESOURCE: Resource = preload("res://src/activities/activity.tscn")
 
 @onready var deletion_sprite: Sprite2D = %DeletionSprite
-@onready var to_be_deleted: Node = %ToBeDeleted
 @onready var box_container: BoxContainer = $BoxContainer
 
+var model: ActivityModel
 var delete_released: bool = false
 var deletion_counter: int = 0
-var marked_for_deletion: bool = false
 var deletion_timestamp: int
-var time_seconds: int = 0
-var date: Date
 var regex: RegEx
-var _old_name: String
 
 func _ready() -> void:
 	regex = RegEx.new()
 	regex.compile("(\\d+\\d+):(\\d+\\d+):(\\d+\\d+)")
-	_old_name = get_activity_name()
+	set_activity_name(model.name)
 
 func _process(_delta: float) -> void:
-	$TimerEdit.text = TimeFormatter.format(time_seconds)
+	$TimerEdit.text = TimeFormatter.format(model.time_seconds)
 	box_container.visible = not CurrentTracking.is_tracking
 	
 func get_allotted_time() -> int:
-	return time_seconds
+	return model.time_seconds
 	
 func get_activity_name() -> String:
 	return $ActivityEdit.text
 	
 func set_allotted_time(time: int) -> void:
-	time_seconds = time
+	model.time_seconds = time
 
 func set_activity_name(new_name: String) -> void:
+	model.name = new_name
 	$ActivityEdit.text = new_name
 
 func activate() -> void:
@@ -58,7 +55,7 @@ func _update_from_input(new_text: String) -> void:
 		var hours: int = int(match.get_string(1))
 		var minutes: int = int(match.get_string(2)) % 60
 		var seconds: int = int(match.get_string(3)) % 60
-		time_seconds = (hours * 60 * 60) + (minutes * 60) + seconds
+		model.time_seconds = (hours * 60 * 60) + (minutes * 60) + seconds
 		
 	set_process(true)
 
@@ -76,24 +73,14 @@ func _on_timer_edit_focus_exited() -> void:
 func _on_play_button_pressed() -> void:
 	activate()
 
-
 func _on_stop_button_pressed() -> void:
 	$BoxContainer/PlayButton.visible = true
 	$BoxContainer/StopButton.visible = false
 	$Timer.stop()
 	ActivityTopic.activity_stop.disconnect(_on_stop_button_pressed)
 
-
 func _on_timer_timeout() -> void:
-	time_seconds += 1
-
-func _on_activity_edit_text_changed(new_text: String) -> void:
-	var caret_column = %ActivityEdit.caret_column
-	_add_stale_name(_old_name, new_text.to_upper())
-	%ActivityEdit.text = new_text.to_upper()
-	%ActivityEdit.caret_column = caret_column
-	_old_name = %ActivityEdit.text
-
+	model.time_seconds += 1
 
 func _on_delete_button_button_down() -> void:
 	_increase_deletion_counter()
@@ -115,13 +102,6 @@ func _increase_deletion_counter():
 func _on_delete_button_button_up() -> void:
 	delete_released = true
 
-func _add_stale_name(stale_name: String, new_name: String) -> void:
-	for stale: Activity in to_be_deleted.get_children():
-		if stale.get_activity_name() == new_name or (Time.get_ticks_msec() - stale.deletion_timestamp) > 30000:
-			stale.queue_free()
-	
-	var stale_node: Activity = ACTIVITY_RESOURCE.instantiate()
-	stale_node.set_activity_name(stale_name)
-	stale_node.deletion_timestamp = Time.get_ticks_msec()
-	stale_node.hide()
-	to_be_deleted.add_child(stale_node)
+
+func _on_activity_edit_text_changed(new_text: String) -> void:
+	model.name = new_text

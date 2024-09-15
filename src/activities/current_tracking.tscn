@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/activities/current_tracking.gd" id="1_msbpv"]
 
-[node name="CurrentTracking" type="VBoxContainer"]
+[node name="CurrentTracking" type="VBoxContainer" groups=["current_tracking"]]
 offset_right = 78.0
 offset_bottom = 50.0
 size_flags_vertical = 8

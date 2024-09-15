@@ -75,7 +75,7 @@ func _set_current_tracking(current: Activity) -> void:
 func _on_new_day_selected(new_day: Date) -> void:
 	var current_activity: Activity = current_tracking.get_current()
 	if is_instance_valid(current_activity):
-		if current_activity.date.compare(new_day) == 0:
+		if current_activity.model.date.compare(new_day) == 0:
 			_update_or_init_tracking()
 	
 func _update_or_init_tracking() -> void:
@@ -85,7 +85,7 @@ func _update_or_init_tracking() -> void:
 		report_node.queue_free()
 	if not is_instance_valid(tracking_node):
 		if is_instance_valid(activity):
-			SelectedDay.selected_day = activity.date
+			SelectedDay.selected_day = activity.model.date
 		_init_tracking_node()
 		%ViewContainer.add_child(tracking_node)
 	if is_instance_valid(activity):

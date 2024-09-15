@@ -10,7 +10,7 @@ static var TABLE_DEFINITION: Dictionary = {
 	"displayorder" = {"data_type": "int", "not_null": true, "default": 0}
 }
 
-var id: int
+var id: Entity.Id
 var reportid: int
 var name: String = "UNNAMED"
 var time: int = 0
@@ -24,7 +24,7 @@ static func get_table_definition() -> Dictionary:
 	
 static func from_dictionary(dict: Dictionary) -> ActivityEntity:
 	var entity: ActivityEntity = ActivityEntity.new()
-	entity.id = dict["id"]
+	entity.id = Entity.Id.new(dict["id"])
 	entity.reportid = dict["reportid"]
 	entity.name = dict["name"]
 	entity.time = dict["time"]
@@ -34,7 +34,7 @@ static func from_dictionary(dict: Dictionary) -> ActivityEntity:
 
 func get_row() -> Dictionary:
 	return {
-		"id" = id,
+		"id" = null if not is_instance_valid(id) else id.value,
 		"reportid" = reportid,
 		"name" = name,
 		"time" = time,

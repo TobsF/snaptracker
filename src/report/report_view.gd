@@ -72,4 +72,4 @@ func _get_reports_between_dates(start: Date, end: Date) -> Array[DailyReport]:
 	
 func _get_daily_report_or_date(day: Date) -> DailyReport:
 	var report: DailyReport = LoadedReports.get_daily_report(day)
-	return DailyReport.new(day, {}) if report == null else report
+	return DailyReport.new(day, []) if report == null else report

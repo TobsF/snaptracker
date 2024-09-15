@@ -7,7 +7,7 @@ const TABLE_DEFINITION: Dictionary = {
 	"date" = {"data_type":"char(10)", "unique": true,  "not_null": true},
 }
 
-var id: int
+var id: Entity.Id
 var date: String
 
 static func get_table_name() -> String:
@@ -18,13 +18,13 @@ static func get_table_definition() -> Dictionary:
 	
 func get_row() -> Dictionary:
 	return {
-		"id" = id,
+		"id" = null if not is_instance_valid(id) else id.value,
 		"date" = date,
 	}
 
 static func from_dictionary(dict: Dictionary) -> ReportEntity:
 	var entity: ReportEntity = ReportEntity.new()
-	entity.id = dict["id"]
+	entity.id = Entity.Id.new(dict["id"])
 	entity.date = dict["date"]
 	return entity
 
