@@ -16,14 +16,15 @@ func _on_timer_timeout() -> void:
 	_on_timer_timeout()
 	
 func store_activites() -> void:
+	_store_current_tracing()
+		
 	var nodes: Array[Node] = get_tree().get_nodes_in_group("activity_tracking")
 	var new_activities: Array[Activity] = []
 	for activity: Node in nodes:
 		new_activities.append(activity as Activity)
-	var node: CurrentTracking = get_tree().get_first_node_in_group("current_tracking")
-	if is_instance_valid(node.get_current()):
-		new_activities.append(node.get_current())
+
 	if new_activities.size() == 0:
+			saved.emit(SelectedDay.selected_day)
 			return
 
 	var selected_day: Date = new_activities[0].model.date
@@ -44,3 +45,9 @@ func store_activites() -> void:
 			report_dao.delete_activity(model)
 
 	saved.emit(selected_day)
+
+func _store_current_tracing() -> void:
+	var node: CurrentTracking = get_tree().get_first_node_in_group("current_tracking")
+	if is_instance_valid(node.get_current()):
+		var current_activity: ActivityModel = node.get_current().model
+		report_dao.update_activity(current_activity)

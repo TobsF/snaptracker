@@ -81,6 +81,10 @@ func update_activities(model: DailyReport) -> void:
 	for activity: ActivityModel in model.get_activities():
 		_persist_activity_entity(_map_to_entity(activity, report_id), true)
 		
+func update_activity(model: ActivityModel) -> void:
+	var report_id: int = _get_report_id(model.date)
+	_persist_activity_entity(_map_to_entity(model, report_id), true)
+		
 func get_report(date: Date) -> DailyReport:
 	var report_entity: ReportEntity = _get_report_entity(date)
 	var activity_entities: Array[ActivityEntity] = _find_activities(report_entity.id.value)
