@@ -18,12 +18,10 @@ func open_new_day(new_selected_day: Date) -> void:
 	_create_activities_from_day(new_selected_day)
 
 func _create_activities_from_day(selected_day: Date) -> void:
-	var activity_dict: Dictionary = Accumulator.read_daily_from_file(selected_day)
-	for activity_label: String in activity_dict:
+	var report: DailyReport = LoadedReports.get_daily_report(selected_day)
+	for model: ActivityModel in report.get_activities():
 		var activity: Activity = ACTIVITY_RESOURCE.instantiate()
-		activity.set_activity_name(activity_label)
-		activity.set_allotted_time(activity_dict[activity_label])
-		activity.date = selected_day.duplicated()
+		activity.model = model
 		%ActivityContainer.add_child(activity)	
 
 func _get_weekday_text(selected_day: Date) -> String:

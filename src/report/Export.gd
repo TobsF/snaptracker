@@ -33,13 +33,13 @@ func _create_csv_string(reports: Array[DailyReport]) -> String:
 
 	for report: DailyReport in reports:
 		csv_lines[CSV_HEADER_LINE] += _get_date_header_string(report)
-		for activity in report.get_activities():
+		for activity: ActivityModel in report.get_activities():
 			var formatted_time: String = TimeFormatter.format(report.get_time_for_activity(activity).time)
-			if activity_position.has(activity):
-				csv_lines[activity_position.get(activity)] += formatted_time
+			if activity_position.has(activity.name):
+				csv_lines[activity_position.get(activity.name)] += formatted_time
 			else:
-				activity_position[activity] = csv_lines.size()
-				var new_line = _sanitize(activity) + CSV_SEPARATOR.repeat(columns) + formatted_time
+				activity_position[activity.name] = csv_lines.size()
+				var new_line = _sanitize(activity.name) + CSV_SEPARATOR.repeat(columns) + formatted_time
 				csv_lines.append(new_line)
 		columns += 1
 		_append_separator(csv_lines)

@@ -3,25 +3,21 @@ class_name DailyReport
 
 var date: Date
 var total_time: int
-var _activities: Dictionary
+var _activities: Array[ActivityModel]
 
-func _init(init_date: Date, init_activities: Dictionary) -> void:
+func _init(init_date: Date, init_activities: Array[ActivityModel]) -> void:
 	date = init_date
 	_activities = init_activities
 	total_time = _compute_total(init_activities)
 	
-func get_activities() -> Array:
-	return _activities.keys()
+func get_activities() -> Array[ActivityModel]:
+	return _activities
 	
-func get_time_for_activity(activity: String) -> ActivityTime:
-	if _activities.has(activity):
-		var time: int = int(_activities[activity])
-		return ActivityTime.new(time, time / float(total_time))
-	else:
-		return ActivityTime.new(0, 0.0)
+func get_time_for_activity(activity: ActivityModel) -> ActivityTime:
+	return ActivityTime.new(activity.time_seconds, activity.time_seconds / float(total_time))
 
-func _compute_total(activities: Dictionary) -> int:
+func _compute_total(activities: Array[ActivityModel]) -> int:
 	var total: int = 0
-	for activity: String in activities:
-		total += int(activities[activity])
+	for activity: ActivityModel in activities:
+		total += activity.time_seconds
 	return total

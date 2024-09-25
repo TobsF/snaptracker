@@ -21,5 +21,5 @@ func _on_day_selector_new_day(_old_day: Date, new_day: Date) -> void:
 func init_active(activty_name: String, time: int) -> void:
 	for tracker: Activity in daily_activities.get_activity_nodes():
 		if tracker.get_activity_name() == activty_name:
-			tracker.time_seconds = time
+			tracker.set_allotted_time(time)
 			tracker.activate()
