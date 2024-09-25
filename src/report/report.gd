@@ -42,7 +42,12 @@ func set_interval(start: Date, end: Date) -> void:
 func _open_interval() -> void:
 	for item: ActivityReportItem in get_tree().get_nodes_in_group("report_item"):
 		item.queue_free()
-	_render_items(_interval_times.keys())
+	var interval_models: Array[ActivityModel] = []
+	for string_item: String in _interval_times.keys():
+		var model: ActivityModel = ActivityModel.new()
+		model.name = string_item
+		interval_models.append(model)
+	_render_items(interval_models)
 	
 func _show_report_for_date(selected: Date) -> void:
 	for item: ActivityReportItem in get_tree().get_nodes_in_group("report_item"):

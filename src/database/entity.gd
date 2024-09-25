@@ -14,7 +14,7 @@ static func get_table_definition() -> Dictionary:
 	print("Error: get_table_definition must be overridden!")
 	return {}
 
-static func from_dictionary(dict: Dictionary) -> Entity:
+static func from_dictionary(_dict: Dictionary) -> Entity:
 	print("Error: from_dictionary must be overridden!")
 	return Entity.new()
 

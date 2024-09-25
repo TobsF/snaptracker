@@ -62,14 +62,14 @@ func _on_interval_picker_reset_interval() -> void:
 	day_selector.clear_interval()
 	
 func _get_reports_between_dates(start: Date, end: Date) -> Array[DailyReport]:
-	var reports: Array[DailyReport] = [_get_daily_report_or_date(start)]
+	var reports: Array[DailyReport] = [_get_daily_report_for_date(start)]
 	var iterator: Date = start.duplicated()
 	while iterator.compare(end) < 0:
 		iterator = Date.get_next(iterator)
-		reports.append(_get_daily_report_or_date(iterator))
+		reports.append(_get_daily_report_for_date(iterator))
 		
 	return reports
 	
-func _get_daily_report_or_date(day: Date) -> DailyReport:
-	var report: DailyReport = LoadedReports.get_daily_report(day)
-	return DailyReport.new(day, []) if report == null else report
+func _get_daily_report_for_date(day: Date) -> DailyReport:
+	var daily_report: DailyReport = LoadedReports.get_daily_report(day)
+	return DailyReport.new(day, []) if daily_report == null else daily_report

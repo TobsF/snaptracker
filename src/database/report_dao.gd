@@ -4,7 +4,7 @@ func _persist_report_entity(report: ReportEntity) -> void:
 		SqliteDatabase.db.insert_row(ReportEntity.get_table_name(), report.get_row())
 		
 func _persist_activity_entity(activity: ActivityEntity, merge: bool = true) -> void:
-	if merge and is_instance_valid(_find_activity_entity("id = '%s'" % [activity.id.value])):
+	if merge:
 		SqliteDatabase.db.update_rows(ActivityEntity.get_table_name(), "id = '%s'" % [activity.id.value], activity.get_row())
 	else:
 		SqliteDatabase.db.insert_row(ActivityEntity.get_table_name(), activity.get_row())
