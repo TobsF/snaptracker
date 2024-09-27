@@ -10,11 +10,8 @@ var model: ActivityModel
 var delete_released: bool = false
 var deletion_counter: int = 0
 var deletion_timestamp: int
-var regex: RegEx
 
 func _ready() -> void:
-	regex = RegEx.new()
-	regex.compile("(\\d+\\d+):(\\d+\\d+):(\\d+\\d+)")
 	set_activity_name(model.name)
 
 func _process(_delta: float) -> void:
@@ -50,12 +47,9 @@ func is_marked_for_deletion() -> bool:
 	return false
 
 func _update_from_input(new_text: String) -> void:
-	var match: RegExMatch = regex.search(new_text)
-	if match != null and new_text.length() == 8 and match.get_group_count() == 3:
-		var hours: int = int(match.get_string(1))
-		var minutes: int = int(match.get_string(2)) % 60
-		var seconds: int = int(match.get_string(3)) % 60
-		model.time_seconds = (hours * 60 * 60) + (minutes * 60) + seconds
+	var parse_result: int = TimeFormatter.parse(new_text)
+	if parse_result > 0:
+		model.time_seconds = parse_result
 		
 	set_process(true)
 

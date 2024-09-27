@@ -43,7 +43,7 @@ func _get_report_id(date: Date) -> int:
 
 func _map(entity: ActivityEntity, date: Date) -> ActivityModel:
 	var model: ActivityModel = ActivityModel.new()
-	model.activity_id = entity.id.value
+	model.activity_id = entity.id
 	model.date = date
 	model.display_order = entity.displayorder
 	model.name = entity.name
@@ -53,7 +53,7 @@ func _map(entity: ActivityEntity, date: Date) -> ActivityModel:
 func _map_to_entity(model: ActivityModel, report_id: int) -> ActivityEntity:
 	var entity: ActivityEntity = ActivityEntity.new()
 	entity.displayorder = model.display_order
-	entity.id = Entity.Id.new(model.activity_id)
+	entity.id = model.activity_id if is_instance_valid(model.activity_id) else null
 	entity.name = model.name
 	entity.reportid = report_id
 	entity.time = model.time_seconds
@@ -61,11 +61,7 @@ func _map_to_entity(model: ActivityModel, report_id: int) -> ActivityEntity:
 
 func add_new_activity(date: Date) -> ActivityModel:
 	var report_id: int = _get_report_id(date)
-	var existing_activities: Array[ActivityEntity] = _find_activities(report_id)
-	var next_order_number: int = 0
-	for existing: ActivityEntity in existing_activities:
-		if next_order_number <= existing.displayorder:
-			next_order_number = existing.displayorder + 1
+	var next_order_number: int = _find_next_order_number(report_id)
 			
 	var new_activity: ActivityEntity = ActivityEntity.new()
 	new_activity.reportid = report_id
@@ -76,10 +72,24 @@ func add_new_activity(date: Date) -> ActivityModel:
 	
 	return _map(persisted_activity, date)
 	
-func update_activities(model: DailyReport) -> void:
+func import_report(model: DailyReportMutable) -> void:
+	var updated_activities: Array[ActivityModel] = []
+	var next_display_order_number: int = _find_next_order_number(_get_report_id(model.date))
+	for activity: ActivityModel in model.get_activities():
+		var updated: ActivityModel = ActivityModel.new()
+		updated.date = activity.date
+		updated.name = activity.name
+		updated.time_seconds = activity.time_seconds
+		updated.display_order = next_display_order_number
+		updated_activities.append(updated)
+		next_display_order_number += 1
+	
+	update_activities(DailyReport.new(model.date, updated_activities), false)
+	
+func update_activities(model: DailyReport, merge: bool = true) -> void:
 	var report_id: int = _get_report_id(model.date)
 	for activity: ActivityModel in model.get_activities():
-		_persist_activity_entity(_map_to_entity(activity, report_id), true)
+		_persist_activity_entity(_map_to_entity(activity, report_id), merge)
 		
 func update_activity(model: ActivityModel) -> void:
 	var report_id: int = _get_report_id(model.date)
@@ -94,4 +104,12 @@ func get_report(date: Date) -> DailyReport:
 	return DailyReport.new(report_entity.get_date(), activity_models)
 
 func delete_activity(model: ActivityModel) -> void:
-	SqliteDatabase.db.delete_rows(ActivityEntity.get_table_name(), "id = '%s'" % [model.activity_id])
+	SqliteDatabase.db.delete_rows(ActivityEntity.get_table_name(), "id = '%s'" % [model.activity_id.value])
+
+func _find_next_order_number(report_id: int) -> int:
+	var existing_activities: Array[ActivityEntity] = _find_activities(report_id)
+	var next_order_number: int = 0
+	for existing: ActivityEntity in existing_activities:
+		if next_order_number <= existing.displayorder:
+			next_order_number = existing.displayorder + 1
+	return next_order_number

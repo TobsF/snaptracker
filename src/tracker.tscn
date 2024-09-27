@@ -37,6 +37,10 @@ text = "Tracking"
 layout_mode = 2
 text = "Report"
 
+[node name="ImportButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
+layout_mode = 2
+text = "Import"
+
 [node name="CurrentTracking" parent="MarginContainer/ViewContainer/VBoxContainer" instance=ExtResource("4_onygj")]
 unique_name_in_owner = true
 visible = false
@@ -57,5 +61,6 @@ script = ExtResource("7_npnr5")
 
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/TrackingButton" to="." method="_on_tracking_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ReportButton" to="." method="_on_report_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ImportButton" to="." method="_on_import_button_pressed"]
 [connection signal="clicked" from="MarginContainer/ViewContainer/VBoxContainer/CurrentTracking" to="." method="_on_current_tracking_clicked"]
 [connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]

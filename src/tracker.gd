@@ -13,6 +13,7 @@ var compact_view: CompactView
 func _ready() -> void:
 	if(OS.has_feature("window_decoration")):
 		get_window().borderless = false
+	get_window().gui_embed_subwindows = false
 	_init_tracking_node()
 	%ViewContainer.add_child(tracking_node)
 
@@ -93,3 +94,7 @@ func _update_or_init_tracking() -> void:
 		var time := activity.get_allotted_time()
 		current_tracking.clear()
 		tracking_node.init_active(activity_name, time)
+
+
+func _on_import_button_pressed() -> void:
+	add_child(Import.SCENE.instantiate())

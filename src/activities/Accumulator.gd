@@ -48,6 +48,6 @@ func store_activites() -> void:
 
 func _store_current_tracing() -> void:
 	var node: CurrentTracking = get_tree().get_first_node_in_group("current_tracking")
-	if is_instance_valid(node.get_current()):
+	if is_instance_valid(node) and is_instance_valid(node.get_current()):
 		var current_activity: ActivityModel = node.get_current().model
 		report_dao.update_activity(current_activity)

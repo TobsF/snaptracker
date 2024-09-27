@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://doe2kwnkbr2x1"]
+
+[ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_7vkk3"]
+[ext_resource type="Script" path="res://src/error_info.gd" id="1_37rd6"]
+
+[node name="ErrorInfo" type="MarginContainer"]
+clip_contents = true
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_37rd6")
+
+[node name="Background" parent="." instance=ExtResource("1_7vkk3")]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.203922, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RemoveButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "x"
+
+[node name="ErrorTextLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "An unexpected error occured."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
