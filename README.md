@@ -3,7 +3,9 @@ A time-tracking tool created in Godot.
 
 SnapTracker was made to help you keep track of how long you have been working on certain tasks. Once you are done tracking, you can check all your tracked data in the report view.
 
-All data is stored in the default app userdata path in monthly JSON-files (see https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html).
+All data is stored in the default app userdata path in an SQLite database (see https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html).
+
+You can import and export data to/from CSV.
 
 ## Tracking View
 
