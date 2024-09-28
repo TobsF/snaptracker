@@ -38,6 +38,7 @@ size_flags_stretch_ratio = 0.0
 [node name="FoldButton" type="TextureButton" parent="FoldContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Shrink to minimal view."
 texture_normal = ExtResource("4_r8geo")
 texture_hover = ExtResource("5_7pgsf")
 ignore_texture_size = true

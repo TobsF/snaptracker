@@ -90,11 +90,8 @@ func _update_or_init_tracking() -> void:
 		_init_tracking_node()
 		%ViewContainer.add_child(tracking_node)
 	if is_instance_valid(activity):
-		var activity_name := activity.get_activity_name()
-		var time := activity.get_allotted_time()
+		tracking_node.init_active(activity)
 		current_tracking.clear()
-		tracking_node.init_active(activity_name, time)
-
 
 func _on_import_button_pressed() -> void:
 	add_child(Import.SCENE.instantiate())
