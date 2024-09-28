@@ -8,7 +8,6 @@ title = "File Import"
 initial_position = 2
 size = Vector2i(420, 206)
 wrap_controls = true
-always_on_top = true
 script = ExtResource("1_301es")
 
 [node name="Background" parent="." instance=ExtResource("1_mvioj")]
