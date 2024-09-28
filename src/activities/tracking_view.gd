@@ -18,8 +18,8 @@ func _on_day_selector_new_day(_old_day: Date, new_day: Date) -> void:
 	daily_activities.open_new_day(new_day)
 	new_day_selected.emit(new_day)
 
-func init_active(activty_name: String, time: int) -> void:
+func init_active(activity: Activity) -> void:
 	for tracker: Activity in daily_activities.get_activity_nodes():
-		if tracker.get_activity_name() == activty_name:
-			tracker.set_allotted_time(time)
+		if tracker.model.activity_id.value == activity.model.activity_id.value:
+			tracker.set_allotted_time(activity.get_allotted_time())
 			tracker.activate()
