@@ -43,6 +43,7 @@ texture = SubResource("PlaceholderTexture2D_hb3bi")
 
 [node name="DeleteButton" type="Button" parent="."]
 layout_mode = 2
+tooltip_text = "Hold to delete activity."
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lmyel")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_bue37")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2fvko")
@@ -72,6 +73,7 @@ size_flags_stretch_ratio = 1.01
 [node name="PlayButton" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Start tracking."
 texture_normal = ExtResource("2_mj4w3")
 texture_hover = ExtResource("3_d1a00")
 ignore_texture_size = true
@@ -81,6 +83,7 @@ stretch_mode = 5
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Stop tracking."
 texture_normal = ExtResource("4_ff1fq")
 texture_hover = ExtResource("5_4nnlu")
 ignore_texture_size = true

@@ -25,6 +25,7 @@ size_flags_vertical = 4
 [node name="PreviousMonth" type="TextureButton" parent="PreviousContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "To previous month."
 texture_normal = ExtResource("1_vys4y")
 texture_hover = ExtResource("2_powr4")
 ignore_texture_size = true
@@ -103,6 +104,7 @@ size_flags_vertical = 4
 [node name="NextMonth" type="TextureButton" parent="NextContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "To next month."
 texture_normal = ExtResource("1_vys4y")
 texture_hover = ExtResource("2_powr4")
 ignore_texture_size = true

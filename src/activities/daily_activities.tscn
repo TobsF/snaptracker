@@ -36,4 +36,5 @@ theme_override_constants/margin_bottom = 30
 
 [node name="AddActivity" parent="MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("target_container") instance=ExtResource("1_t3626")]
 layout_mode = 2
+tooltip_text = "Add new activity."
 target_container = NodePath("../../ActivityContainer")
