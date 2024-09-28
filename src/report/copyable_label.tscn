@@ -1,22 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://yoofc37daiiw"]
+[gd_scene load_steps=2 format=3 uid="uid://yoofc37daiiw"]
 
 [ext_resource type="Script" path="res://src/report/copyable_label.gd" id="1_jwljv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wd04"]
-size = Vector2(121, 29)
-
 [node name="CopyableLabel" type="Label"]
 size_flags_horizontal = 3
+mouse_filter = 0
 text = "Copyable Text"
 script = ExtResource("1_jwljv")
 
-[node name="ClickableArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
-unique_name_in_owner = true
-position = Vector2(61, 15)
-shape = SubResource("RectangleShape2D_1wd04")
-
-[connection signal="input_event" from="ClickableArea" to="." method="_on_clickable_area_input_event"]
-[connection signal="mouse_entered" from="ClickableArea" to="." method="_on_clickable_area_mouse_entered"]
-[connection signal="mouse_exited" from="ClickableArea" to="." method="_on_clickable_area_mouse_exited"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
