@@ -10,6 +10,7 @@ var model: ActivityModel
 var delete_released: bool = false
 var deletion_counter: int = 0
 var deletion_timestamp: int
+var recent: RecentActivitiesDropdown
 
 func _ready() -> void:
 	set_activity_name(model.name)
@@ -22,14 +23,14 @@ func get_allotted_time() -> int:
 	return model.time_seconds
 	
 func get_activity_name() -> String:
-	return $ActivityEdit.text
+	return %ActivityEdit.text
 	
 func set_allotted_time(time: int) -> void:
 	model.time_seconds = time
 
 func set_activity_name(new_name: String) -> void:
 	model.name = new_name
-	$ActivityEdit.text = new_name
+	%ActivityEdit.text = new_name
 
 func activate() -> void:
 	ActivityTopic.activity_stop.emit()
@@ -56,10 +57,8 @@ func _update_from_input(new_text: String) -> void:
 func _on_timer_edit_text_submitted(new_text: String) -> void:
 	_update_from_input(new_text)
 
-
 func _on_timer_edit_focus_entered() -> void:
 	set_process(false)
-
 
 func _on_timer_edit_focus_exited() -> void:
 	_update_from_input($TimerEdit.text)
@@ -96,6 +95,31 @@ func _increase_deletion_counter():
 func _on_delete_button_button_up() -> void:
 	delete_released = true
 
-
 func _on_activity_edit_text_changed(new_text: String) -> void:
 	model.name = new_text
+	if not is_instance_valid(recent):
+		_add_dropdown()
+	recent.on_new_input(new_text)
+
+func _on_recent_activities_dropdown_suggestion_accepted(suggestion: String) -> void:
+	set_activity_name(suggestion)
+	%ActivityEdit.caret_column = suggestion.length()
+	_remove_dropdown()
+
+func _on_activity_edit_focus_entered() -> void:
+	_add_dropdown()
+
+func _on_activity_edit_focus_exited() -> void:
+	_remove_dropdown()
+
+func _add_dropdown() -> void:
+	if is_instance_valid(recent):
+		return
+	recent = RecentActivitiesDropdown.SCENE.instantiate()
+	recent.z_index = 1
+	recent.suggestion_accepted.connect(_on_recent_activities_dropdown_suggestion_accepted)
+	%VBoxContainer.add_child(recent)
+
+func _remove_dropdown() -> void:
+	if is_instance_valid(recent):
+		recent.queue_free()
