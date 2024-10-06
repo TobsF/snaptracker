@@ -26,22 +26,18 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("next_suggestion"):
 		get_viewport().set_input_as_handled()
 		var suggestions: Array[Node] = suggestions_container.get_children()
-		var counter: int = 0
-		for suggestion: Suggestion in suggestions:
-			counter += 1
-			if suggestion.is_selected() and counter <= suggestions.size() - 1:
-				suggestion.selected = false
-				suggestions[counter].selected = true
+		for i in range(suggestions.size()):
+			if suggestions[i].is_selected() and i + 1 <= suggestions.size() - 1:
+				suggestions[i].selected = false
+				suggestions[i+1].selected = true
 				return
 	elif event.is_action_pressed("previous_suggestion"):
 		get_viewport().set_input_as_handled()
 		var suggestions: Array[Node] = suggestions_container.get_children()
-		var counter: int = 0
-		for suggestion: Suggestion in suggestions:
-			if suggestion.is_selected() and counter - 1 >= 0:
-				suggestion.selected = false
-				suggestions[counter - 1].selected = true
-			counter += 1
+		for i in range(suggestions.size()):
+			if suggestions[i].is_selected() and i - 1 >= 0:
+				suggestions[i].selected = false
+				suggestions[i-1].selected = true
 				
 func _new_activities_from_report(report: DailyReport, existing: Array[String]) -> Array[String]:
 	var new_arr: Array[String] = []
