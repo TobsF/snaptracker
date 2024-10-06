@@ -24,6 +24,7 @@ func _input(event: InputEvent) -> void:
 		suggestion_accepted.emit(_find_selected())
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("next_suggestion"):
+		get_viewport().set_input_as_handled()
 		var suggestions: Array[Node] = suggestions_container.get_children()
 		var counter: int = 0
 		for suggestion: Suggestion in suggestions:
@@ -33,6 +34,7 @@ func _input(event: InputEvent) -> void:
 				suggestions[counter].selected = true
 				return
 	elif event.is_action_pressed("previous_suggestion"):
+		get_viewport().set_input_as_handled()
 		var suggestions: Array[Node] = suggestions_container.get_children()
 		var counter: int = 0
 		for suggestion: Suggestion in suggestions:
@@ -68,12 +70,13 @@ func on_new_input(input: String) -> void:
 	for node: Suggestion in suggestion_nodes:
 		node.search_string = input
 		if node.is_matched():
-			if not is_suggestion_displayed():
+			if not is_selection_displayed():
 				node.selected = true
 			if not node.is_inside_tree():
 				suggestions_container.add_child(node)
 		else:
 			if node.is_inside_tree():
+				node.selected = false
 				suggestions_container.remove_child(node)
 	visible = is_suggestion_displayed()
 			
@@ -85,3 +88,10 @@ func _find_selected() -> String:
 
 func is_suggestion_displayed() -> bool:
 	return not suggestions_container.get_children().is_empty()
+
+func is_selection_displayed() -> bool:
+	for node: Node in suggestions_container.get_children():
+		var suggestion: Suggestion = node as Suggestion
+		if suggestion.is_selected():
+			return true
+	return false

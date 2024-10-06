@@ -8,7 +8,7 @@ static var regex: RegEx = RegEx.new()
 const FORMAT: String = "[color=#999999]%s[/color][color=white]%s[/color][color=#999999]%s[/color]"
 # format this regex, replacing %s with the match to look for. 
 # group 2 will be the matched section, group 1 everything before and group 3 everything after
-const REGEX_STRING: String = "^(.*?)(%s)(.*?)$"
+const REGEX_STRING: String = "(?i)^(.*?)(%s)(.*?)$"
 
 @export var search_string: String = "":
 	set(new):
