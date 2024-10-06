@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkp0x6rmdyimp"]
+
+[ext_resource type="Script" path="res://src/activities/recent/recent_activities_dropdown.gd" id="1_bvbii"]
+[ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_r47ik"]
+
+[node name="RecentActivitiesDropdown" type="Container"]
+script = ExtResource("1_bvbii")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="Background" parent="MarginContainer" instance=ExtResource("1_r47ik")]
+layout_mode = 2
+
+[node name="SuggestionsContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2

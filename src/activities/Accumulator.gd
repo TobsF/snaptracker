@@ -27,6 +27,8 @@ func store_activites() -> void:
 			saved.emit(SelectedDay.selected_day)
 			return
 
+	if not is_instance_valid(new_activities[0].model):
+		return
 	var selected_day: Date = new_activities[0].model.date
 	
 	var activities_to_save: Array[ActivityModel] = []

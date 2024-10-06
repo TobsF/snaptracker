@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2lv2plx7xhxi"]
+
+[ext_resource type="Script" path="res://src/activities/recent/suggestion.gd" id="1_8akc5"]
+
+[node name="Suggestion" type="RichTextLabel"]
+clip_contents = false
+offset_right = 55.0
+offset_bottom = 23.0
+bbcode_enabled = true
+text = "UWE90"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("1_8akc5")
+search_string = "WE"
+
+[node name="Highlight" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.2)
+layout_mode = 0
+offset_top = 2.0
+offset_right = 78.0
+offset_bottom = 22.0
