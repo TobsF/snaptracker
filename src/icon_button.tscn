@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb1fi3w8ief8u"]
+
+[ext_resource type="Texture2D" uid="uid://xrosg4rdc18u" path="res://resources/buttons/clock-regular.svg" id="1_dgfbx"]
+
+[node name="IconButton" type="Button"]
+focus_mode = 0
+text = "Tracking"
+icon = ExtResource("1_dgfbx")
