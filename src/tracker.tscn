@@ -31,14 +31,17 @@ layout_mode = 2
 
 [node name="TrackingButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Tracking"
 
 [node name="ReportButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Report"
 
 [node name="ImportButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Import"
 
 [node name="CurrentTracking" parent="MarginContainer/ViewContainer/VBoxContainer" instance=ExtResource("4_onygj")]

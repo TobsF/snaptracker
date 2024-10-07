@@ -8,11 +8,11 @@ content_margin_top = 15.0
 content_margin_right = 15.0
 content_margin_bottom = 15.0
 bg_color = Color(0.252028, 0.252028, 0.252028, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.568973, 0.568973, 0.568973, 1)
+border_color = Color(0.400698, 0.400698, 0.400698, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7u38"]
 content_margin_left = 15.0
@@ -20,11 +20,11 @@ content_margin_top = 15.0
 content_margin_right = 15.0
 content_margin_bottom = 15.0
 bg_color = Color(0.194349, 0.194349, 0.194349, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0.873298, 0.873298, 0.873298, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra10u"]
 content_margin_top = 15.0
@@ -32,11 +32,11 @@ content_margin_right = 15.0
 content_margin_bottom = 15.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aef1e"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.113725, 0.129412, 0.141176, 1)
 border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vssg1"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.113725, 0.129412, 0.141176, 1)
 
 [resource]
 Button/styles/disabled = ExtResource("1_drfjd")
