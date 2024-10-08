@@ -7,8 +7,6 @@ const ACTIVITY_RESOURCE: Resource = preload("res://src/activities/activity.tscn"
 @onready var box_container: BoxContainer = $BoxContainer
 
 var model: ActivityModel
-var delete_released: bool = false
-var deletion_counter: int = 0
 var deletion_timestamp: int
 var recent: RecentActivitiesDropdown
 
@@ -75,26 +73,6 @@ func _on_stop_button_pressed() -> void:
 func _on_timer_timeout() -> void:
 	model.time_seconds += 1
 
-func _on_delete_button_button_down() -> void:
-	_increase_deletion_counter()
-
-func _increase_deletion_counter():
-	if delete_released:
-		deletion_counter = 0
-		delete_released = false
-		deletion_sprite.scale.y = 0
-	elif deletion_counter >= 10:
-		deletion_timestamp = Time.get_ticks_msec()
-		hide()
-	else:
-		deletion_counter += 1
-		var tween: Tween = create_tween()
-		tween.tween_property(deletion_sprite, "scale:y", deletion_sprite.scale.y + 0.1 , 0.1)
-		tween.parallel().tween_callback(_increase_deletion_counter).set_delay(0.1)
-
-func _on_delete_button_button_up() -> void:
-	delete_released = true
-
 func _on_activity_edit_text_changed(new_text: String) -> void:
 	model.name = new_text
 	if not is_instance_valid(recent):
@@ -123,3 +101,8 @@ func _add_dropdown() -> void:
 func _remove_dropdown() -> void:
 	if is_instance_valid(recent):
 		recent.queue_free()
+
+
+func _on_delete_button_deleted() -> void:
+	deletion_timestamp = Time.get_ticks_msec()
+	hide()

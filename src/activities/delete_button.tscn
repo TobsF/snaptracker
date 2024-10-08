@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://u6uirw01dd2h"]
+
+[ext_resource type="Script" path="res://src/activities/delete_button.gd" id="1_0e0qg"]
+[ext_resource type="Texture2D" uid="uid://bjp2u71rbgh65" path="res://resources/buttons/trash-can-regular.svg" id="1_024ws"]
+[ext_resource type="Texture2D" uid="uid://bwxaw8piujvrn" path="res://resources/buttons/trash-can-hover.svg" id="2_rp1t6"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ewqxu"]
+size = Vector2(29, 32)
+
+[node name="DeleteContainer" type="BoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_0e0qg")
+
+[node name="DeleteButton" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Hold to delete activity."
+focus_mode = 0
+texture_normal = ExtResource("1_024ws")
+texture_hover = ExtResource("2_rp1t6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="DeletionSprite" type="Sprite2D" parent="DeleteButton"]
+unique_name_in_owner = true
+modulate = Color(0.988897, 0, 0.0751305, 0.454902)
+position = Vector2(20, 24)
+scale = Vector2(1.01448, 1e-05)
+texture = SubResource("PlaceholderTexture2D_ewqxu")
+
+[connection signal="button_down" from="DeleteButton" to="." method="_on_delete_button_button_down"]
+[connection signal="button_up" from="DeleteButton" to="." method="_on_delete_button_button_up"]
