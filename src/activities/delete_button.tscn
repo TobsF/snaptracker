@@ -7,12 +7,13 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ewqxu"]
 size = Vector2(29, 32)
 
-[node name="DeleteContainer" type="BoxContainer"]
-custom_minimum_size = Vector2(35, 35)
+[node name="DeleteContainer" type="MarginContainer"]
+custom_minimum_size = Vector2(35, 20)
 offset_right = 40.0
 offset_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
 script = ExtResource("1_0e0qg")
 
 [node name="DeleteButton" type="TextureButton" parent="."]
@@ -28,8 +29,8 @@ stretch_mode = 5
 [node name="DeletionSprite" type="Sprite2D" parent="DeleteButton"]
 unique_name_in_owner = true
 modulate = Color(0.988897, 0, 0.0751305, 0.454902)
-position = Vector2(20, 24)
-scale = Vector2(1.01448, 1e-05)
+position = Vector2(13, 24)
+scale = Vector2(0.854482, 1e-05)
 texture = SubResource("PlaceholderTexture2D_ewqxu")
 
 [connection signal="button_down" from="DeleteButton" to="." method="_on_delete_button_button_down"]

@@ -1,4 +1,4 @@
-extends BoxContainer
+extends MarginContainer
 
 signal deleted
 
@@ -9,7 +9,7 @@ var delete_released: bool = false
 var deletion_counter: int = 0
 
 func _ready() -> void:
-	deletion_sprite.global_position = delete_button.global_position + Vector2(58, 22)
+	deletion_sprite.global_position = delete_button.global_position + Vector2(10, 20)
 
 func _on_delete_button_button_down() -> void:
 	_increase_deletion_counter()

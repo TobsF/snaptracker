@@ -1,4 +1,4 @@
-extends Button
+extends BoxContainer
 
 @export var target_container: Container
 
