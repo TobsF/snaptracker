@@ -15,6 +15,10 @@ theme_override_constants/margin_top = 15
 
 [node name="Background" parent="MarginContainer" instance=ExtResource("1_r47ik")]
 layout_mode = 2
+color = Color(0.1319, 0.151035, 0.163794, 1)
 
 [node name="SuggestionsContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

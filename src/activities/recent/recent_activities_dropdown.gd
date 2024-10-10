@@ -16,6 +16,7 @@ func _ready() -> void:
 	_add_unique_activities_from_last_days(recent_cutoff)
 	suggestion_nodes = map_suggestions_to_node(recent_activities)
 	visible = is_suggestion_displayed()
+	_draw_text_hint()
 
 func _input(event: InputEvent) -> void:
 	if not visible:
@@ -91,3 +92,15 @@ func is_selection_displayed() -> bool:
 		if suggestion.is_selected():
 			return true
 	return false
+
+func _on_visibility_changed() -> void:
+	_draw_text_hint()
+
+func _on_tree_exiting() -> void:
+	GlobalTextTopic.new_text.emit("")
+
+func _draw_text_hint() -> void:
+	if visible:
+		GlobalTextTopic.new_text.emit("Press tab to accept suggestion.")
+	else:
+		GlobalTextTopic.new_text.emit("")

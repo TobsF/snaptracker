@@ -101,7 +101,6 @@ func _remove_dropdown() -> void:
 	if is_instance_valid(recent):
 		recent.queue_free()
 
-
 func _on_delete_button_deleted() -> void:
 	deletion_timestamp = Time.get_ticks_msec()
 	hide()
