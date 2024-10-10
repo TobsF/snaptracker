@@ -3,7 +3,6 @@ class_name Activity
 
 const ACTIVITY_RESOURCE: Resource = preload("res://src/activities/activity.tscn")
 
-@onready var deletion_sprite: Sprite2D = %DeletionSprite
 @onready var box_container: BoxContainer = $BoxContainer
 
 var model: ActivityModel
