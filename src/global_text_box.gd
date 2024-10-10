@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 @export var label_size: Vector2i = Vector2i(300, 100)
 @export var margin: Vector2i = Vector2i(15, 15)
@@ -13,7 +13,7 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(_place_on_window)
 	
 func _place_on_window() -> void:
-	global_position = get_window().size - label_size - margin
+	%TextboxPosition.global_position = get_window().size - label_size - margin
 
 func _on_new_text(text: String) -> void:
 	if %Timer.time_left > 0:
