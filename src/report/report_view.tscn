@@ -65,12 +65,14 @@ size_flags_vertical = 0
 
 [node name="IntervalResetButton" type="Button" parent="ButtonMargin/HButtonContainer/IntervalControlContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Reset Interval"
 
 [node name="TotalCheckButton" type="CheckButton" parent="ButtonMargin/HButtonContainer/IntervalControlContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+focus_mode = 0
 text = "Total"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
