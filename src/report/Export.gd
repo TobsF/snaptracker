@@ -33,7 +33,7 @@ func _create_csv_string(reports: Array[DailyReport]) -> String:
 
 	for report: DailyReport in reports:
 		csv_lines[CSV_HEADER_LINE] += _get_date_header_string(report)
-		for activity: ActivityModel in report.get_activities():
+		for activity: ActivityModel in _get_deduplicated_activities(report):
 			var formatted_time: String = TimeFormatter.format(report.get_time_for_activity(activity).time)
 			if activity_position.has(activity.name):
 				csv_lines[activity_position.get(activity.name)] += formatted_time
@@ -59,3 +59,12 @@ func _sanitize(input: String) -> String:
 	if input.contains(CSV_SEPARATOR):
 		return '"' + input + '"'
 	return input
+
+func _get_deduplicated_activities(report: DailyReport) -> Array:
+	var activities_dict: Dictionary = {}
+	for activity: ActivityModel in report.get_activities():
+		if activities_dict.has(activity.name):
+			activities_dict[activity.name].time_seconds += activity.time_seconds
+		else:
+			activities_dict[activity.name] = activity
+	return activities_dict.values()
