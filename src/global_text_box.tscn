@@ -2,16 +2,19 @@
 
 [ext_resource type="Script" path="res://src/global_text_box.gd" id="1_xqbnb"]
 
-[node name="GlobalTextBox" type="Node2D"]
+[node name="GlobalTextBox" type="CanvasLayer"]
 script = ExtResource("1_xqbnb")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextboxPosition" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Label" type="Label" parent="TextboxPosition"]
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.581033, 0.581033, 0.581033, 1)
 autowrap_mode = 3
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="TextboxPosition"]
 unique_name_in_owner = true
 one_shot = true

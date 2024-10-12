@@ -26,3 +26,5 @@ There is also a compact view that you can pin in place, which will then always s
 In the report view you'll get an overview of all your tracked activities.
 
 You can jump back to arbitrary days or select an interval that you would like to look at. Given you have selected an interval, you can also view all tracked activities in a combined view.
+
+Here you can also export csv data to a file or your clipboard. Select an interval and toggle "total" on if you want to export multiple days at once.

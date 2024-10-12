@@ -25,4 +25,3 @@ func set_activity_time(activity_time: int) -> void:
 
 func set_percentage(percentage: float) -> void:
 	_percentage = percentage
-

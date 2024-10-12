@@ -11,6 +11,7 @@ layout_mode = 2
 [node name="Export" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+focus_mode = 0
 text = "Export"
 
 [node name="ExportButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -19,10 +20,12 @@ layout_mode = 2
 
 [node name="CsvExportButton" type="Button" parent="VBoxContainer/ExportButtonsContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "to CSV"
 
 [node name="ClipboardExportButton" type="Button" parent="VBoxContainer/ExportButtonsContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "to Clipboard"
 
 [connection signal="pressed" from="VBoxContainer/Export" to="." method="_on_export_pressed"]

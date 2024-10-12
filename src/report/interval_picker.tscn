@@ -82,17 +82,21 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
 clip_text = true
 
 [node name="Hyphen" type="Label" parent="VBoxContainer/SelectedIntervalContainer"]
 layout_mode = 2
 text = "-"
+horizontal_alignment = 1
 clip_text = true
 
 [node name="SelectedEndLabel" type="Label" parent="VBoxContainer/SelectedIntervalContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 clip_text = true
 

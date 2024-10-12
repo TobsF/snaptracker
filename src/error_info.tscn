@@ -15,14 +15,17 @@ script = ExtResource("1_37rd6")
 [node name="Background" parent="." instance=ExtResource("1_7vkk3")]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(1, 0.203922, 0, 1)
+color = Color(0.745098, 0.141176, 0, 0.686275)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="RemoveButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = "x"
+focus_mode = 0
+theme_type_variation = &"FlatButton"
+text = "X"
 
 [node name="ErrorTextLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true

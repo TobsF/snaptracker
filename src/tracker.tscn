@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccyribr17cuhf"]
+[gd_scene load_steps=10 format=3 uid="uid://ccyribr17cuhf"]
 
 [ext_resource type="Script" path="res://src/tracker.gd" id="1_bmhnn"]
 [ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_i0got"]
 [ext_resource type="Theme" uid="uid://c7v1cvt2e6440" path="res://resources/themes/tracker_theme.tres" id="2_4c3qh"]
 [ext_resource type="PackedScene" uid="uid://ba5shoi57k6yc" path="res://src/global_text_box.tscn" id="2_pgqxq"]
 [ext_resource type="PackedScene" uid="uid://euos5mhsb35v" path="res://src/global_scaler.tscn" id="3_rnt32"]
+[ext_resource type="PackedScene" uid="uid://bb1fi3w8ief8u" path="res://src/icon_button.tscn" id="4_hix8l"]
 [ext_resource type="PackedScene" uid="uid://c2duff3uuqbra" path="res://src/activities/current_tracking.tscn" id="4_onygj"]
-[ext_resource type="Script" path="res://src/quit_button.gd" id="7_npnr5"]
+[ext_resource type="Texture2D" uid="uid://dvyvdpkdbvtcg" path="res://resources/buttons/file-pen-solid.svg" id="5_0mr2y"]
+[ext_resource type="Texture2D" uid="uid://cxl0psgpof7ys" path="res://resources/buttons/file-import-solid.svg" id="6_c2mxj"]
 
 [node name="Tracker" type="Node2D"]
 script = ExtResource("1_bmhnn")
@@ -28,18 +30,20 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ViewContainer"]
 layout_mode = 2
+size_flags_stretch_ratio = 0.15
 
-[node name="TrackingButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
+[node name="TrackingButton" parent="MarginContainer/ViewContainer/VBoxContainer" instance=ExtResource("4_hix8l")]
 layout_mode = 2
-text = "Tracking"
 
-[node name="ReportButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
+[node name="ReportButton" parent="MarginContainer/ViewContainer/VBoxContainer" instance=ExtResource("4_hix8l")]
 layout_mode = 2
 text = "Report"
+icon = ExtResource("5_0mr2y")
 
-[node name="ImportButton" type="Button" parent="MarginContainer/ViewContainer/VBoxContainer"]
+[node name="ImportButton" parent="MarginContainer/ViewContainer/VBoxContainer" instance=ExtResource("4_hix8l")]
 layout_mode = 2
 text = "Import"
+icon = ExtResource("6_c2mxj")
 
 [node name="CurrentTracking" parent="MarginContainer/ViewContainer/VBoxContainer" instance=ExtResource("4_onygj")]
 unique_name_in_owner = true
@@ -49,18 +53,9 @@ size_flags_vertical = 10
 
 [node name="GlobalScaler" parent="MarginContainer" instance=ExtResource("3_rnt32")]
 
-[node name="QuitButton" type="Button" parent="."]
-offset_left = 1130.0
-offset_top = 2.0
-offset_right = 1148.0
-offset_bottom = 33.0
-text = "X"
-script = ExtResource("7_npnr5")
-
 [node name="GlobalTextBox" parent="." instance=ExtResource("2_pgqxq")]
 
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/TrackingButton" to="." method="_on_tracking_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ReportButton" to="." method="_on_report_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ImportButton" to="." method="_on_import_button_pressed"]
 [connection signal="clicked" from="MarginContainer/ViewContainer/VBoxContainer/CurrentTracking" to="." method="_on_current_tracking_clicked"]
-[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
