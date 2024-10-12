@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccyribr17cuhf"]
+[gd_scene load_steps=10 format=3 uid="uid://ccyribr17cuhf"]
 
 [ext_resource type="Script" path="res://src/tracker.gd" id="1_bmhnn"]
 [ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_i0got"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c2duff3uuqbra" path="res://src/activities/current_tracking.tscn" id="4_onygj"]
 [ext_resource type="Texture2D" uid="uid://dvyvdpkdbvtcg" path="res://resources/buttons/file-pen-solid.svg" id="5_0mr2y"]
 [ext_resource type="Texture2D" uid="uid://cxl0psgpof7ys" path="res://resources/buttons/file-import-solid.svg" id="6_c2mxj"]
-[ext_resource type="Script" path="res://src/quit_button.gd" id="7_npnr5"]
 
 [node name="Tracker" type="Node2D"]
 script = ExtResource("1_bmhnn")
@@ -54,18 +53,9 @@ size_flags_vertical = 10
 
 [node name="GlobalScaler" parent="MarginContainer" instance=ExtResource("3_rnt32")]
 
-[node name="QuitButton" type="Button" parent="."]
-offset_left = 1130.0
-offset_top = 2.0
-offset_right = 1148.0
-offset_bottom = 33.0
-text = "X"
-script = ExtResource("7_npnr5")
-
 [node name="GlobalTextBox" parent="." instance=ExtResource("2_pgqxq")]
 
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/TrackingButton" to="." method="_on_tracking_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ReportButton" to="." method="_on_report_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ViewContainer/VBoxContainer/ImportButton" to="." method="_on_import_button_pressed"]
 [connection signal="clicked" from="MarginContainer/ViewContainer/VBoxContainer/CurrentTracking" to="." method="_on_current_tracking_clicked"]
-[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]

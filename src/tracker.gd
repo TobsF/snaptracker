@@ -11,8 +11,6 @@ var report_node: Node
 var compact_view: CompactView
 
 func _ready() -> void:
-	if(OS.has_feature("window_decoration")):
-		get_window().borderless = false
 	get_window().gui_embed_subwindows = false
 	_init_tracking_node()
 	%ViewContainer.add_child(tracking_node)
