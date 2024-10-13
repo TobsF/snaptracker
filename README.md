@@ -28,3 +28,13 @@ In the report view you'll get an overview of all your tracked activities.
 You can jump back to arbitrary days or select an interval that you would like to look at. Given you have selected an interval, you can also view all tracked activities in a combined view.
 
 Here you can also export csv data to a file or your clipboard. Select an interval and toggle "total" on if you want to export multiple days at once.
+
+----------------------------------------------
+
+## Build
+
+This project requires Godot 4.3 to build.
+
+Run `./build.sh` to build executables for Linux and Windows. The artifacts will be in `build/linux` for Linux and in `build/windows` for Windows.
+
+You can pass "flatpak" to `build.sh` to use the Godot flatpak to build instead.
