@@ -16,6 +16,7 @@ func set_current(activity: Activity) -> void:
 	activity_name.text = activity.get_activity_name()
 	show()
 	is_tracking = true
+	ActivityTopic.current_tracking_changed.emit(is_tracking)
 	
 func get_current() -> Activity:
 	return _current
@@ -24,6 +25,7 @@ func clear() -> void:
 	hide()
 	_current.free()
 	is_tracking = false
+	ActivityTopic.current_tracking_changed.emit(is_tracking)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
