@@ -67,6 +67,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.5
 
 [connection signal="deleted" from="DeleteButton" to="." method="_on_delete_button_deleted"]
