@@ -8,7 +8,7 @@ signal new_day(old_day: Date, new_day: Date)
 @export var interval_end: Date
 
 func _ready() -> void:
-	_update_date_text()
+	_update_date_diplay()
 
 func set_interval(start: Date, end: Date)  -> void:
 	interval_start = start
@@ -21,11 +21,15 @@ func set_interval(start: Date, end: Date)  -> void:
 	if Date.get_next(selected_day).compare(interval_end) <= 0:
 		%NextDayButton.show()
 
-	_update_date_text()
+	_update_date_diplay()
 	
 func clear_interval() -> void:
 	interval_start = null
 	interval_end = null
+	_reset_date()
+
+
+func _reset_date() -> void:
 	var old_day = selected_day
 	selected_day = Date.current_as_date()
 	SelectedDay.selected_day = Date.current_as_date()
@@ -34,7 +38,7 @@ func clear_interval() -> void:
 	%PreviousDayButton.show()
 	%NextDayButton.show()
 	
-	_update_date_text()
+	_update_date_diplay()
 
 func _on_previous_day_button_pressed() -> void:
 	selected_day = Date.get_previous(selected_day)
@@ -45,7 +49,7 @@ func _on_previous_day_button_pressed() -> void:
 	if interval_start and selected_day.compare(interval_start) <= 0:
 		%PreviousDayButton.hide()
 		
-	_update_date_text()
+	_update_date_diplay()
 
 func _on_next_day_button_pressed() -> void:
 	selected_day = Date.get_next(selected_day)
@@ -56,7 +60,17 @@ func _on_next_day_button_pressed() -> void:
 	if interval_end and selected_day.compare(interval_end) >= 0:
 		%NextDayButton.hide()
 		
-	_update_date_text()
+	_update_date_diplay()
 
-func _update_date_text() -> void:
-	$DateLabel.text = "%s.%s.%s" % [selected_day.day, selected_day.month, selected_day.year]
+func _update_date_diplay() -> void:
+	%DateLabel.text = "%s.%s.%s" % [selected_day.day, selected_day.month, selected_day.year]
+	if selected_day.compare(Date.current_as_date()) != 0 and not _is_interval_set():
+		%ResetDateButton.show()
+	else:
+		%ResetDateButton.hide()
+
+func _is_interval_set() -> bool:
+	return is_instance_valid(interval_start) and is_instance_valid(interval_end)
+
+func _on_reset_date_button_pressed() -> void:
+	_reset_date()
