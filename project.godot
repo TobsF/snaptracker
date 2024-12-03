@@ -14,6 +14,7 @@ config/name="Snaptracker"
 run/main_scene="res://src/tracker.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
+run/low_processor_mode=true
 boot_splash/image="res://resources/splash.png"
 config/icon="res://resources/icon.png"
 config/windows_native_icon="res://resources/icon.ico"
