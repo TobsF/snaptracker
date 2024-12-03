@@ -20,8 +20,6 @@ func _on_csv_export_button_pressed() -> void:
 	GlobalTextTopic.new_temporary_notification.emit("Saved to " + file.get_path_absolute() + ".", 5, true)
 	file.close()
 
-
-
 func _on_clipboard_export_button_pressed() -> void:
 	DisplayServer.clipboard_set(_create_csv_string(selected_reports))
 	GlobalTextTopic.new_temporary_notification.emit("Saved to clipboard.", 2, true)

@@ -16,8 +16,8 @@ func _on_file_dialog_button_pressed() -> void:
 	if is_instance_valid(dialog):
 		dialog.queue_free()
 	dialog = FileDialog.new()
+	dialog.access = FileDialog.ACCESS_FILESYSTEM
 	dialog.title = "Select a file to import"
-	dialog.use_native_dialog = true
 	dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	dialog.filters = file_filter
 	add_child(dialog)
