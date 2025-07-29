@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://u6uirw01dd2h"]
 
-[ext_resource type="Script" path="res://src/activities/delete_button.gd" id="1_0e0qg"]
+[ext_resource type="Script" uid="uid://b6k4elkk225a6" path="res://src/activities/delete_button.gd" id="1_0e0qg"]
 [ext_resource type="Texture2D" uid="uid://bjp2u71rbgh65" path="res://resources/buttons/trash-can-regular.svg" id="1_024ws"]
 [ext_resource type="Texture2D" uid="uid://bwxaw8piujvrn" path="res://resources/buttons/trash-can-hover.svg" id="2_rp1t6"]
 

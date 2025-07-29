@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pi5cn1kl0pq6"]
 
-[ext_resource type="Script" path="res://src/report/import/import.gd" id="1_301es"]
+[ext_resource type="Script" uid="uid://c8p5oebon6v22" path="res://src/report/import/import.gd" id="1_301es"]
 [ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_mvioj"]
 
 [node name="Import" type="Window"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0lfsgpdbhe3v"]
 
-[ext_resource type="Script" path="res://src/report/Export.gd" id="1_c37de"]
+[ext_resource type="Script" uid="uid://cargbehlfj353" path="res://src/report/Export.gd" id="1_c37de"]
 
 [node name="Export" type="HBoxContainer"]
 script = ExtResource("1_c37de")

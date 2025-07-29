@@ -2,7 +2,7 @@ extends Entity
 class_name ReportEntity
 
 const TABLE_NAME: String = "reports"
-const TABLE_DEFINITION: Dictionary = {
+const TABLE_DEFINITION: Dictionary[String, Dictionary] = {
 	"id" = {"data_type":"int", "primary_key": true, "not_null": true, "auto_increment": true},
 	"date" = {"data_type":"char(10)", "unique": true,  "not_null": true},
 }
