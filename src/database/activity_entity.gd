@@ -2,7 +2,7 @@ extends Entity
 class_name ActivityEntity
 
 static var TABLE_NAME: String = "activities"
-static var TABLE_DEFINITION: Dictionary = {
+static var TABLE_DEFINITION: Dictionary[String, Dictionary] = {
 	"id" = {"data_type":"int", "primary_key": true, "not_null": true, "auto_increment": true},
 	"reportid" = {"data_type": "int", "not_null": true, "foreign_key": "reports.id"},
 	"name" = {"data_type": "text", "not_null": true, "default": "UNNAMED"},

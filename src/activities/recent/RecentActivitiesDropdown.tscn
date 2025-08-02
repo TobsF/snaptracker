@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkp0x6rmdyimp"]
 
-[ext_resource type="Script" path="res://src/activities/recent/recent_activities_dropdown.gd" id="1_bvbii"]
+[ext_resource type="Script" uid="uid://1nq4kpkwlc8s" path="res://src/activities/recent/recent_activities_dropdown.gd" id="1_bvbii"]
 [ext_resource type="PackedScene" uid="uid://chalvtlpjhj0r" path="res://src/background.tscn" id="1_r47ik"]
 
 [node name="RecentActivitiesDropdown" type="Container"]

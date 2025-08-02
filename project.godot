@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Snaptracker"
 run/main_scene="res://src/tracker.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 run/low_processor_mode=true
 boot_splash/image="res://resources/splash.png"
@@ -28,6 +28,10 @@ LoadedReports="*res://src/report/loaded_reports.gd"
 Accumulator="*res://src/activities/Accumulator.gd"
 QuitListener="*res://src/quit_listener.gd"
 SqliteDatabase="*res://src/database/sqlite_database.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 
 [input]
 

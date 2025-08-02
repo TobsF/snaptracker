@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://votsouooyknd"]
 
 [ext_resource type="Texture2D" uid="uid://bicdveuejq1fv" path="res://resources/buttons/next.png" id="1_vys4y"]
-[ext_resource type="Script" path="res://src/report/interval_picker.gd" id="1_wb68v"]
+[ext_resource type="Script" uid="uid://xts8tdslnukv" path="res://src/report/interval_picker.gd" id="1_wb68v"]
 [ext_resource type="Texture2D" uid="uid://cd6gqqp4yin8d" path="res://resources/buttons/next_hover.png" id="2_powr4"]
 
 [node name="IntervalPicker" type="HBoxContainer"]

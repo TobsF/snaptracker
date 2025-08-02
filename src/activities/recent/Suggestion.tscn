@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2lv2plx7xhxi"]
 
-[ext_resource type="Script" path="res://src/activities/recent/suggestion.gd" id="1_8akc5"]
+[ext_resource type="Script" uid="uid://bf1m5uusjbkds" path="res://src/activities/recent/suggestion.gd" id="1_8akc5"]
 
 [node name="Suggestion" type="RichTextLabel"]
 clip_contents = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ba5shoi57k6yc"]
 
-[ext_resource type="Script" path="res://src/global_text_box.gd" id="1_xqbnb"]
+[ext_resource type="Script" uid="uid://bvdld51a352oa" path="res://src/global_text_box.gd" id="1_xqbnb"]
 
 [node name="GlobalTextBox" type="CanvasLayer"]
 script = ExtResource("1_xqbnb")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://kccesvha77mj"]
 
-[ext_resource type="Script" path="res://src/activities/add_activity.gd" id="1_gowon"]
+[ext_resource type="Script" uid="uid://dqh1iwh5nrfyx" path="res://src/activities/add_activity.gd" id="1_gowon"]
 [ext_resource type="Texture2D" uid="uid://c12hqe4yu7ji3" path="res://resources/buttons/plus-regular.svg" id="2_ff2vx"]
 [ext_resource type="Texture2D" uid="uid://b5naqrkbf10du" path="res://resources/buttons/plus-hover.svg" id="3_v0lh6"]
 

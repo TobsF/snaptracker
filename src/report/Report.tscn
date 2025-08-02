@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcct66ur6x82i"]
 
-[ext_resource type="Script" path="res://src/report/report.gd" id="1_ab38x"]
+[ext_resource type="Script" uid="uid://cq1wluo6nyttm" path="res://src/report/report.gd" id="1_ab38x"]
 [ext_resource type="PackedScene" uid="uid://bebplqd82yg1g" path="res://src/report/activity_report_item.tscn" id="3_pum8j"]
 
 [node name="Report" type="VBoxContainer"]

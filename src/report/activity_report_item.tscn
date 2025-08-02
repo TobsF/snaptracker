@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bebplqd82yg1g"]
 
-[ext_resource type="Script" path="res://src/report/activity_report_item.gd" id="1_043p5"]
+[ext_resource type="Script" uid="uid://bj4i66eo05bd3" path="res://src/report/activity_report_item.gd" id="1_043p5"]
 [ext_resource type="PackedScene" uid="uid://yoofc37daiiw" path="res://src/report/copyable_label.tscn" id="2_yofr5"]
 
 [node name="ActivityReportItem" type="HBoxContainer" groups=["report_item"]]
