@@ -33,7 +33,7 @@ Here you can also export csv data to a file or your clipboard. Select an interva
 
 ## Build
 
-This project requires Godot 4.3 to build.
+This project requires Godot 4.4 to build.
 
 Run `./build.sh` to build executables for Linux and Windows. The artifacts will be in `build/linux` for Linux and in `build/windows` for Windows.
 
