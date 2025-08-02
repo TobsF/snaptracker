@@ -16,7 +16,8 @@ func _ready() -> void:
 	%ViewContainer.add_child(tracking_node)
 
 func _on_tracking_button_pressed() -> void:
-	_update_or_init_tracking()
+	if not is_instance_valid(tracking_node):
+		_update_or_init_tracking()
 
 func _on_report_button_pressed() -> void:
 	Accumulator.store_activites()

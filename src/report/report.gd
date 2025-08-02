@@ -37,7 +37,7 @@ func clear_interval() -> void:
 func set_interval(start: Date, end: Date) -> void:
 	interval_start = start
 	interval_end = end
-	_load_data_for_interval(interval_start, interval_end)
+	loaded_data = _load_data_for_interval(interval_start, interval_end)
 	
 func _open_interval() -> void:
 	for item: ActivityReportItem in get_tree().get_nodes_in_group("report_item"):
